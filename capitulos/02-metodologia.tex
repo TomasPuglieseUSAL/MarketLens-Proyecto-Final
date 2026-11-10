@@ -1,82 +1,163 @@
 %!TEX root = ../main.tex
 % =============================================================
-%  CAPÍTULO 2 — METODOLOGÍA             (Entrega 2 · 5 % · 5/5)
+% CAPÍTULO 2 — METODOLOGÍA Y PROCEDIMIENTOS · MARKETLENS
+% Adaptación del documento académico al esquema de la cátedra.
+% No se reproducen los entornos ilustrativos guia/ejemplo/completar.
 % =============================================================
 
 \chapter{Metodología y procedimientos}\label{cap:metodologia}
 
-\begin{guia}[Guía de la cátedra: qué se evalúa en este capítulo]
-La cátedra exige \textbf{dos metodologías}. El error más común es
-entregar solo una.
+\section{Enfoque metodológico general}\label{sec:ml-enfoque}
+
+MarketLens se desarrolla como un proyecto de investigación aplicada orientado a construir y verificar un prototipo de apoyo a la evaluación preventiva del riesgo en publicaciones de marketplaces digitales. Se busca transformar información accesible sobre publicaciones y vendedores en indicadores interpretables, sin equiparar automáticamente una puntuación elevada con una estafa comprobada.
+
+El trabajo contempla dos planos metodológicos complementarios. El primero corresponde a la \textbf{metodología de investigación}, utilizada para delimitar el problema, seleccionar información, definir indicadores y analizar críticamente los resultados. El segundo corresponde a la \textbf{metodología de dirección del proyecto}, mediante la cual se organizan entregables, recursos, cronograma, riesgos y criterios de calidad. Esta distinción permite evaluar, por separado, la validez de las conclusiones y el grado de avance del producto de software.
+
+\section{Metodología de la investigación}\label{sec:ml-metodologia-investigacion}
+
+\subsection{Área temática, problema y delimitación}\label{subsec:ml-problema}
+
+El área temática comprende el comercio electrónico, los sistemas de reputación, la ingeniería de software y el análisis de datos aplicado a la prevención de fraude digital. El problema estudiado es la dificultad que enfrenta un comprador para interpretar conjuntamente señales observables de riesgo, tales como diferencias de precio e información limitada del vendedor, especialmente cuando esos datos se encuentran distribuidos entre diferentes fuentes.
+
+La unidad de análisis del prototipo es la \textbf{publicación de un producto}, junto con los atributos disponibles de su vendedor. Durante la etapa documentada, las comprobaciones se concentraron en determinadas publicaciones de Mercado Libre; el diseño prevé la incorporación de otros marketplaces, pero esta ampliación no se considera validada en el presente estudio.
+
+El alcance empírico se limita a casos exploratorios seleccionados para verificar funciones del sistema. No se dispone todavía de una muestra probabilística ni de un conjunto representativo de publicaciones etiquetadas como legítimas o fraudulentas. Por lo tanto, los resultados no permiten estimar tasas generales de fraude, precisión predictiva ni reducción efectiva de estafas.
+
+\subsection{Diseño de investigación y fases}\label{subsec:ml-fases-investigacion}
+
+Se adopta un diseño aplicado y exploratorio, con análisis cuantitativo de indicadores técnicos y examen cualitativo de las limitaciones encontradas. El procedimiento se organiza en las siguientes fases:
+
 \begin{enumerate}
-    \item \textbf{Metodología de la investigación}: área temática,
-          planteamiento y delimitación del problema, marco teórico
-          previsto, diseño concreto (fases), indicadores medibles con
-          fuente y umbral, técnicas de recolección, instrumentos, datos,
-          procesamiento, análisis crítico y síntesis. Tipo de
-          investigación: en general, aplicada.
-    \item \textbf{Metodología de dirección del proyecto}: marco de trabajo
-          justificado, alcance y entregables, cronograma con fechas reales
-          (Gantt con hitos que coinciden con las entregas), costos, riesgos
-          (referencia al capítulo~\ref{cap:riesgos}), calidad, recursos y
-          satisfacción de las partes interesadas.
-    \item \textbf{Declaración de uso de IA}: qué tareas fueron asistidas y
-          cómo se verificaron. Los prompts se guardan en una carpeta
-          compartida con la cátedra.
+    \item \textbf{Relevamiento del problema y antecedentes.} Identificación de modalidades de fraude y revisión de bibliografía sobre marketplaces, reputación, técnicas de análisis de datos y sistemas colaborativos. El sustento conceptual se desarrolla en el capítulo~\ref{cap:marco-teorico}.
+    \item \textbf{Definición del alcance y de los indicadores.} Selección de atributos observables de publicaciones y vendedores, criterios para su utilización y condiciones bajo las cuales la información se considera insuficiente.
+    \item \textbf{Diseño de la solución.} Especificación de una arquitectura cliente--servidor con aplicación web, API REST, base de datos y extensión de navegador. Los componentes y sus responsabilidades se presentan en el capítulo~\ref{cap:marco-tecnologico}.
+    \item \textbf{Obtención y preparación de datos.} Recolección de atributos disponibles mediante interfaces externas accesibles, extensión de navegador y registros almacenados en la plataforma; normalización de títulos, precios y demás características utilizadas en el análisis.
+    \item \textbf{Implementación del análisis.} Identificación de candidatos comparables mediante TF--IDF y similitud coseno; comprobaciones complementarias de compatibilidad comercial; aplicación de reglas ponderadas y cálculo de cobertura de información.
+    \item \textbf{Pruebas y contraste.} Ejecución de pruebas automatizadas, funcionales y de integración para comparar resultados observados con resultados esperados ante escenarios definidos.
+    \item \textbf{Interpretación crítica.} Presentación de resultados, discusión de restricciones de acceso a datos, cobertura limitada y ausencia de validación estadística de la capacidad de detección de fraude.
 \end{enumerate}
-Extensión orientativa: 6 a 10 páginas. Referencias habituales:
-\citet{hernandezsampieri2014} para investigación y \citet{pmi2021}
-para gestión.
-\end{guia}
 
-\completar{Desarrollo del capítulo.}
+Estas fases describen el procedimiento de trabajo y no constituyen, por sí mismas, evidencia de que todas las funcionalidades previstas se hayan completado.
 
-\section{\completar{Nombre de la sección}}
+\subsection{Técnicas de recolección e instrumentos}\label{subsec:ml-recoleccion}
 
-\completar{Texto.}
+La información utilizada en las pruebas procede de distintas fuentes y se registra mediante herramientas asociadas al desarrollo:
+
+\begin{itemize}
+    \item \textbf{Publicaciones consultadas:} título, precio, moneda, condición y otros atributos visibles cuando están disponibles.
+    \item \textbf{Información del vendedor:} señales observables de actividad y reputación, incluida la cantidad de ventas completadas cuando puede recuperarse con una observación identificable.
+    \item \textbf{Extensión de navegador:} obtención de información visible de determinadas páginas de Mercado Libre y comunicación con los servicios de MarketLens.
+    \item \textbf{API REST y herramientas de consulta HTTP:} envío de solicitudes y registro de respuestas JSON para comprobar operaciones y resultados del motor.
+    \item \textbf{Base de datos PostgreSQL:} almacenamiento y recuperación de publicaciones, vendedores y evaluaciones gestionadas por el prototipo.
+    \item \textbf{Pruebas Java mediante Maven:} ejecución reproducible de casos automatizados y conservación de sus informes de resultados.
+\end{itemize}
+
+Los instrumentos de verificación más relevantes incluyen las respuestas de los servicios de comparación de precios y evaluación de riesgo, la captura de la extensión correspondiente a la publicación interna \#70 y los informes de ejecución de pruebas. Sus evidencias se presentan en el capítulo~\ref{cap:resultados} y en los apéndices.
+
+La disponibilidad de datos depende de cada marketplace y del tipo de publicación. Por ello, los atributos faltantes se tratan como una \textbf{limitación de cobertura}, y no como una prueba automática de comportamiento fraudulento. Las referencias de precio seleccionadas por similitud textual se consideran provisionales mientras su equivalencia comercial no esté comprobada.
+
+\subsection{Procesamiento y análisis de los datos}\label{subsec:ml-procesamiento}
+
+El procedimiento de comparación de precios utiliza representaciones textuales TF--IDF y similitud coseno para recuperar publicaciones candidatas. Posteriormente se examinan incompatibilidades relevantes, por ejemplo diferencias explícitas de modelo, variante, capacidad, condición o composición de paquetes. La similitud textual no implica por sí misma que dos ofertas sean equivalentes.
+
+Cuando existen referencias suficientemente comparables, el sistema puede obtener medidas descriptivas, como la mediana, cuartiles y diferencia relativa de precio. Esta última se calcula, para una publicación con precio $P$ y una referencia central $M$, mediante:
+
+\begin{equation}
+    \Delta_{\%} = \frac{P-M}{M}\times 100,
+    \label{eq:ml-diferencia-precio}
+\end{equation}
+
+siempre que $M>0$. Un valor negativo indica un precio inferior a la referencia utilizada. La interpretación debe considerar la cantidad y calidad de las referencias disponibles.
+
+El motor combina los aportes de los factores pertinentes mediante reglas y ponderaciones implementadas en la versión evaluada. El resultado se expresa como puntuación entre 0 y 100, nivel cualitativo y detalle de los factores contribuyentes. Se comunica además la cobertura de información, a fin de distinguir \textit{riesgo estimado} de \textit{evidencia disponible}. El índice no representa una probabilidad estadísticamente calibrada de fraude.
+
+\subsection{Indicadores medibles y criterios de aceptación}\label{subsec:ml-indicadores}
+
+La tabla~\ref{tab:ml-indicadores} establece indicadores operativos vinculados con el comportamiento verificable del prototipo. Los umbrales aquí indicados corresponden a \textbf{criterios de aceptación funcional o resultados esperados de casos controlados}; no deben interpretarse como objetivos de precisión predictiva sobre el mercado real.
 
 \begin{table}[H]
     \centering
-    \caption{Indicadores del proyecto (ejemplo de estructura)}
-    \label{tab:indicadores}
-    \small
-    \begin{tabularx}{\textwidth}{l L L l l}
+    \caption{Indicadores operativos y fuentes de verificación de MarketLens}
+    \label{tab:ml-indicadores}
+    \scriptsize
+    \begin{tabularx}{\textwidth}{l L L L L}
         \toprule
-        \tb{ID} & \tb{Variable} & \tb{Indicador} & \tb{Umbral} & \tb{Fuente} \\
+        \tb{ID} & \tb{Variable} & \tb{Indicador verificable} & \tb{Criterio / umbral} & \tb{Fuente} \\
         \midrule
-        I-01 & Calidad de la predicción & \gls{sym:f1} sobre el conjunto de prueba & $\geq 0{,}70$ & \citet{pedregosa2011} \\
-        I-02 & Tiempo de respuesta & Latencia p95 de la \gls{api} & $< 5$ s & Registros del servidor \\
-        I-03 & Usabilidad & Tareas completadas sin ayuda en prueba con usuarios & $\geq 80\,\%$ & \citet{nielsen1993} \\
+        I-01 & Resultado de evaluación & Presencia de índice, nivel, factores y cobertura & Los cuatro elementos deben estar informados en un caso evaluable & Respuesta del servicio de evaluaciones; Apéndice A \\
+        I-02 & Aplicación de ponderaciones & Suma de aportes para publicación \#70 después del ajuste & $25+15=40$ puntos; nivel \texttt{MEDIUM} & Prueba del motor y captura de la extensión; Cap.~\ref{cap:resultados} \\
+        I-03 & Tratamiento de referencias insuficientes & Penalización adicional por precio & Cero puntos cuando las referencias no sustentan el cálculo & Caso de comparación con una sola referencia; Cap.~\ref{cap:resultados} \\
+        I-04 & Reproducibilidad de pruebas & Fallos y errores en ejecución automatizada & Cero fallos y cero errores en la ejecución registrada & Salida de Maven; Apéndice B \\
+        I-05 & Integración extensión--backend & Coincidencia del índice mostrado con el resultado del caso evaluado & \texttt{40/100} en la evaluación documentada de la publicación \#70 & Captura de la extensión; Cap.~\ref{cap:resultados} \\
         \bottomrule
     \end{tabularx}
 \end{table}
 
-\section{\completar{Nombre de la sección}}
+Los resultados de los indicadores se interpretan únicamente para los escenarios ensayados. En particular, el registro de 62 pruebas automatizadas ejecutadas sin fallos ni errores acredita el comportamiento esperado de esas pruebas, pero no determina la precisión de MarketLens ante publicaciones fraudulentas reales.
 
-\completar{Texto.}
+Los indicadores de sensibilidad, especificidad, precisión, exhaustividad o $F_1$ requerirían previamente un conjunto de casos etiquetados y un protocolo de evaluación independiente. Del mismo modo, no se atribuyen al prototipo cifras de satisfacción de usuarios, tiempos de respuesta o disponibilidad del servicio que aún no hayan sido medidos de forma sistemática.
+
+\subsection{Validación, análisis crítico y síntesis}\label{subsec:ml-validacion}
+
+La validación se organiza en tres niveles. Las \textbf{pruebas automatizadas} verifican reglas y procedimientos mediante entradas y salidas esperadas; las \textbf{pruebas funcionales} comprueban operaciones de la API y resultados observables; y las \textbf{pruebas de integración} examinan la comunicación entre extensión, backend y persistencia de datos. Los casos se registran con sus condiciones, respuesta obtenida y estado de comprobación.
+
+Las evaluaciones iniciales se conservaron cuando resultaron útiles para documentar ajustes de reglas. Por ejemplo, en la publicación interna \#70 una combinación inicial de factores produjo 25 puntos; tras revisar las ponderaciones, el resultado esperado y observado mediante la extensión fue de 40 puntos. Esta diferencia se describe como \textbf{evolución del motor}, no como dos resultados simultáneos bajo idéntica configuración.
+
+El análisis crítico distingue entre verificación técnica y eficacia preventiva. Se identificaron restricciones en el acceso a ciertos datos externos y diferencias de estructura entre publicaciones individuales y de catálogo, además de incertidumbre sobre la equivalencia comercial de algunos candidatos de precio. Por lo tanto, la síntesis de resultados se concentra en la factibilidad técnica parcial y en las condiciones pendientes para una validación empírica del sistema, sin afirmar la detección confirmada de estafas.
+
+\section{Metodología de dirección del proyecto}\label{sec:ml-direccion-proyecto}
+
+\subsection{Marco de trabajo y organización}\label{subsec:ml-marco-gestion}
+
+La dirección del proyecto adopta un \textbf{enfoque incremental e iterativo}, coherente con la planificación expuesta en el documento de MarketLens. En lugar de intentar implementar todas las funciones previstas en una única entrega, se desarrollan componentes verificables y se revisan a partir de las dificultades técnicas y de las pruebas realizadas.
+
+El proceso comprende el relevamiento de requisitos, el diseño de arquitectura, la implementación de backend y base de datos, la construcción de interfaces, la integración de la extensión y la verificación del motor de evaluación de riesgo. Los cambios en reglas y ponderaciones deben acompañarse de actualización de pruebas y documentación para conservar trazabilidad entre decisión, implementación y resultado.
+
+No se declara la aplicación formal de Scrum ni de otro marco con roles, ceremonias o métricas no documentados. La metodología utilizada se caracteriza por iteraciones de implementación, comprobación y ajuste, con seguimiento de entregables académicos.
+
+\subsection{Alcance, entregables y control de cambios}\label{subsec:ml-alcance-gestion}
+
+El alcance de desarrollo prioriza una primera versión funcional compuesta por API REST, almacenamiento relacional, aplicación web y extensión de navegador; el mecanismo central es la evaluación explicable de publicaciones mediante reglas y datos disponibles. Los entregables técnicos y documentales considerados son:
+
+\begin{itemize}
+    \item Código del backend, frontend y extensión, administrado mediante control de versiones.
+    \item Estructura de persistencia para publicaciones, vendedores y evaluaciones.
+    \item Servicios de registro, consulta, comparación de precios y evaluación de riesgo.
+    \item Pruebas automatizadas y comprobaciones funcionales y de integración, con evidencias de ejecución.
+    \item Memoria académica organizada según los capítulos de la cátedra, anexos técnicos y presentación final.
+\end{itemize}
+
+Las funcionalidades de reportes colaborativos, análisis agregado, compatibilidad con otros marketplaces y mejoras del modelo pueden requerir iteraciones posteriores. Su inclusión en el alcance conceptual no implica que todas se encuentren terminadas o validadas en el prototipo actual.
+
+Los cambios se evalúan según su relación con los objetivos del proyecto, su costo de implementación, el efecto sobre módulos existentes y la necesidad de nuevas pruebas. Se priorizan las correcciones que afectan la consistencia de resultados, el tratamiento de datos faltantes y la comunicación entre componentes.
+
+\subsection{Cronograma e hitos de entrega}\label{subsec:ml-cronograma}
+
+Los hitos de la tabla~\ref{tab:ml-hitos} reproducen las fechas de entrega consignadas en el calendario 2026 de la plantilla de la cátedra. Son \textbf{fechas académicas de referencia}, no un registro de finalización efectiva de todas las actividades técnicas.
 
 \begin{table}[H]
     \centering
-    \caption{Hitos y entregables del proyecto (calendario 2026 de la cátedra)}
-    \label{tab:hitos}
+    \caption{Hitos académicos y entregables del ciclo lectivo 2026}
+    \label{tab:ml-hitos}
     \small
     \begin{tabularx}{\textwidth}{l L l l}
         \toprule
         \tb{Hito} & \tb{Entregable} & \tb{Fecha} & \tb{Peso} \\
         \midrule
-        H0 & Idea y resumen & \completar{fecha} & 10\,\% \\
-        H1 & Cap.~2 Metodología y procedimientos & 5/5/2026 & 5\,\% \\
-        H2 & Cap.~1 Introducción & 9/6/2026 & 5\,\% \\
-        H3 & Cap.~3 Síntesis de la literatura consultada & 28/7/2026 & 10\,\% \\
-        H4 & Cap.~4 Marco tecnológico & 25/8/2026 & 10\,\% \\
-        H5 & Cap.~5 Justificación económica & 15/9/2026 & 15\,\% \\
-        H6 & Cap.~6 Análisis de riesgos & 29/9/2026 & 5\,\% \\
-        H7 & Cap.~7 Presentación de resultados & 13/10/2026 & 5\,\% \\
-        H8 & Cap.~8 Conclusiones & 20/10/2026 & 5\,\% \\
+        H1 & Capítulo 2: Metodología y procedimientos & 05/05/2026 & 5\,\% \\
+        H2 & Capítulo 1: Introducción & 09/06/2026 & 5\,\% \\
+        H3 & Capítulo 3: Síntesis de la literatura consultada & 28/07/2026 & 10\,\% \\
+        H4 & Capítulo 4: Marco tecnológico & 25/08/2026 & 10\,\% \\
+        H5 & Capítulo 5: Justificación económica & 15/09/2026 & 15\,\% \\
+        H6 & Capítulo 6: Análisis de riesgos & 29/09/2026 & 5\,\% \\
+        H7 & Capítulo 7: Presentación de resultados & 13/10/2026 & 5\,\% \\
+        H8 & Capítulo 8: Conclusiones & 20/10/2026 & 5\,\% \\
         H9 & Documento final, proyecto funcional y presentación & 17/11/2026 & 30\,\% \\
         \bottomrule
     \end{tabularx}
 \end{table}
+
+La figura~\ref{fig:ml-gantt} organiza, con carácter \textbf{orientativo}, los períodos de trabajo propuestos en el ejemplo del template oficial. La correspondencia entre fechas planificadas y fechas reales de ejecución deberá ajustarse con los registros del proyecto antes de presentar este gráfico como seguimiento histórico.
 
 \begin{figure}[H]
     \centering
@@ -88,7 +169,7 @@ para gestión.
         bar label font=\small, milestone label font=\small,
         title label font=\small,
         bar/.append style={fill=mainColor!60, draw=none},
-        milestone/.append style={fill=mainColor, draw=none},
+        milestone/.append style={fill=mainColor, draw=none}
     ]{2026-03-16}{2026-11-20}
         \gantttitlecalendar{month=shortname} \\
         \ganttbar{Idea y resumen}{2026-03-16}{2026-04-10} \\
@@ -104,6 +185,38 @@ para gestión.
         \ganttbar{Integración y revisión}{2026-10-21}{2026-11-16} \\
         \ganttmilestone{Entrega final}{2026-11-17}
     \end{ganttchart}
-    \caption{Cronograma del proyecto (ejemplo con el ciclo lectivo 2026)}
-    \label{fig:gantt}
+    \caption{Cronograma de referencia del proyecto para el ciclo lectivo 2026}
+    \label{fig:ml-gantt}
 \end{figure}
+
+\subsection{Costos, recursos y partes interesadas}\label{subsec:ml-recursos-gestion}
+
+El proyecto utiliza Java y Spring Boot para la lógica de negocio, PostgreSQL para la persistencia, React y TypeScript para la aplicación web, una extensión de navegador y herramientas de control de versiones y pruebas. Las decisiones de implementación e infraestructura se documentan en el capítulo~\ref{cap:marco-tecnologico}.
+
+La justificación económica estima una inversión inicial de aproximadamente \textbf{USD~19.000}, basada en 760 horas de desarrollo a USD~25 por hora, y costos operativos anuales de referencia cercanos a \textbf{USD~6.650}. Estos importes corresponden a \textbf{estimaciones del escenario planteado}, y no a desembolsos comprobados ni ingresos realizados. Los supuestos, escenarios y cálculos financieros se desarrollan en el capítulo~\ref{cap:economica}.
+
+Las partes interesadas consideradas para la dirección del proyecto son el autor, la cátedra y los eventuales usuarios de la plataforma. La cátedra evalúa la calidad académica de los entregables y la trazabilidad de la evidencia; los usuarios potenciales constituyen el público al que se orientan la claridad y utilidad de los indicadores. No se dispone todavía de una evaluación sistemática de satisfacción de usuarios, por lo que su aceptación deberá comprobarse en una etapa específica de pruebas de uso.
+
+\subsection{Gestión de riesgos y calidad}\label{subsec:ml-calidad}
+
+El seguimiento del proyecto contempla riesgos asociados al alcance, las dependencias de APIs externas, la disponibilidad y calidad de datos, la compatibilidad entre tipos de publicaciones, los costos de infraestructura, la seguridad y el uso responsable de reportes. Las causas, consecuencias, probabilidades, respuestas y contingencias se desarrollan en el capítulo~\ref{cap:riesgos}.
+
+La gestión de calidad prioriza criterios observables: coherencia de las respuestas de la API, persistencia de datos, interpretación de los factores de riesgo, ausencia de conclusiones de precio cuando faltan referencias suficientes y pruebas de regresión ante modificaciones del motor. El control de versiones permite conservar los cambios de implementación y documentación. Las pruebas del capítulo~\ref{cap:resultados} proporcionan evidencia de estos criterios, distinguiendo los casos comprobados de aquellos con validación parcial.
+
+\section{Declaración de utilización de herramientas de inteligencia artificial}\label{sec:ml-uso-ia}
+
+Durante la elaboración de MarketLens se utilizaron herramientas de inteligencia artificial generativa como \textbf{apoyo} para la organización y revisión de textos, el análisis de alternativas técnicas, la asistencia en tareas de programación y pruebas, y la adaptación de material redactado en Word al formato LaTeX de la plantilla institucional.
+
+Las propuestas obtenidas mediante estas herramientas no se consideran evidencia empírica por sí mismas. Su aceptación requiere revisión por parte del autor y, cuando corresponde, contraste con el código, las respuestas de los servicios, las salidas de Maven, la documentación técnica y las fuentes bibliográficas. En particular, las puntuaciones de riesgo, las cantidades de pruebas ejecutadas y los resultados financieros deben corresponder a registros o cálculos verificables, y no a cifras generadas por una herramienta de IA.
+
+Para asegurar la trazabilidad exigida por la cátedra, se deberá conservar un \textbf{registro de prompts e intervenciones relevantes}, indicando la tarea asistida, el resultado utilizado y la verificación realizada, en la carpeta compartida destinada a tal fin. La ubicación del registro y su alcance definitivo deben confirmarse antes de la entrega final.
+
+% =============================================================
+% CONTROL EDITORIAL (NO SE IMPRIME EN EL PDF)
+% 1. Confirmar fechas del Gantt de REFERENCIA frente a cronograma real.
+% 2. Completar registro compartido de prompts y su ubicación.
+% 3. Revisar que los indicadores de Cap. 7 se alineen con esta tabla.
+% 4. No declarar precisión predictiva sin dataset etiquetado.
+% 5. Revisar en el PDF si el Gantt cabe en la página de la plantilla.
+% 6. Verificar que el label cap:resultados siga presente en cap. 7.
+% =============================================================
