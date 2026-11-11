@@ -1,10 +1,16 @@
 %!TEX root = ../main.tex
-% Abstract in English (~250 words). Keywords are set in main.tex
-% with \keywords{...}. Must be a faithful translation of the Resumen.
+% ABSTRACT IN ENGLISH — faithful translation of resumen.tex.
+% Update both texts together if results change.
+% Keywords are configured in main.tex with \keywords{...}.
 
 \begin{abstract}
 
-\completar{Abstract, around 250 words: a faithful translation of the
-Resumen.}
+Digital marketplaces facilitate product transactions between users, but they also expose buyers to misleading listings, incomplete information, and difficulties in assessing seller trustworthiness. Although marketplaces provide their own reputation and buyer protection mechanisms, relevant signals may be scattered or insufficient to interpret the risks associated with a transaction.
+
+This study presents MarketLens, a prototype platform for the preventive analysis of listings and sellers. Using an applied research approach and incremental software development, a web interface, a browser extension, an application programming interface developed with Java and Spring Boot, and a PostgreSQL database were implemented. The system combines observable attributes, applies weighted rules, compares prices when sufficiently comparable references are available, and communicates a risk score together with explanatory factors and an indication of information coverage.
+
+Functional tests verified component integration using selected Mercado Libre listings. In one documented case, the browser extension displayed a score of 40 out of 100, with partial coverage of two out of three information groups. In addition, an execution of 62 automated tests was recorded without failures or errors. Price-comparison tests highlighted the need to avoid drawing conclusions when the available reference listings are insufficient.
+
+MarketLens provides a technical foundation for combining and explaining preventive risk indicators. However, the results demonstrate prototype operation only in the tested scenarios; they do not establish statistically validated performance in identifying actual fraud. Collaborative reporting and broader empirical validation remain areas for future work.
 
 \end{abstract}

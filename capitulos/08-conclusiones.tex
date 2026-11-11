@@ -1,54 +1,198 @@
 %!TEX root = ../main.tex
 % =============================================================
-%  CAPÍTULO 8 — IMPLICANCIAS, CONCLUSIONES Y RECOMENDACIONES
-%                                       (Entrega 8 · 5 % · 20/10)
+% CAPÍTULO 8 — IMPLICANCIAS, CONCLUSIONES Y RECOMENDACIONES
+% MarketLens · Proyecto Final USAL
+% Adaptación del documento original de resultados y conclusiones.
+% No requiere nuevas entradas bibliográficas: las referencias son
+% internas a los capítulos 1, 2, 4, 5, 6 y 7.
 % =============================================================
 
 \chapter{Implicancias, conclusiones y recomendaciones}\label{cap:conclusiones}
 
-\begin{guia}[Guía de la cátedra: qué se evalúa en este capítulo]
-\begin{enumerate}
-    \item \textbf{Respuesta explícita a la hipótesis} del
-          capítulo~\ref{cap:introduccion}, con matices y contraejemplos
-          si corresponde (``afirmativa, con matices'' es una respuesta
-          válida; ``se cumplieron todos los objetivos'' sin evidencia no).
-    \item \textbf{Implicancias}: técnicas, sociales y económicas.
-    \item \textbf{Limitaciones honestas}, por categoría (técnicas, de datos,
-          de validación, de mercado), sin maquillaje. Declarar como
-          preliminar lo que es preliminar.
-    \item \textbf{Recomendaciones} accionables y \textbf{trabajo futuro}.
-    \item \textbf{Contribución al conocimiento}: qué sabe ahora la disciplina
-          que antes no sabía.
-\end{enumerate}
-Cierra el arco narrativo: cada objetivo específico se retoma y se
-indica en qué medida se alcanzó, con referencia a la sección que lo
-demuestra.
-\end{guia}
+Este capítulo interpreta los resultados obtenidos durante el desarrollo de MarketLens, examina sus implicancias y establece en qué medida se alcanzaron los objetivos definidos en el capítulo~\ref{cap:introduccion}. Asimismo, responde a la hipótesis de investigación y propone actividades concretas para continuar el trabajo.
 
-\completar{Desarrollo del capítulo.}
+Las conclusiones se apoyan en los procedimientos de verificación del capítulo~\ref{cap:metodologia}, en las decisiones de arquitectura del capítulo~\ref{cap:marco-tecnologico} y en los casos documentados en el capítulo~\ref{cap:resultados}. Se distingue entre \textbf{funcionalidades comprobadas en escenarios puntuales}, \textbf{componentes implementados con validación parcial} y \textbf{capacidades previstas que todavía no cuentan con evidencia suficiente}. Esta distinción es necesaria para evitar que el funcionamiento de un prototipo se interprete como una demostración de su eficacia frente al fraude real.
 
-\section{\completar{Nombre de la sección}}
+\section{Implicancias del proyecto}\label{sec:ml-implicancias}
 
-\begin{ejemplo}[Ejemplo: forma de la respuesta a la hipótesis]
-La hipótesis planteada en el capítulo~\ref{cap:introduccion} se responde
-de manera \completar{afirmativa, con matices}: el sistema alcanzó
-\completar{métrica} sobre el umbral definido en el
-capítulo~\ref{cap:metodologia}, aunque \completar{limitación concreta}.
-\end{ejemplo}
+\subsection{Implicancias tecnológicas}\label{subsec:ml-implicancias-tecnicas}
 
-\completar{Texto.}
+El desarrollo de MarketLens permitió explorar la viabilidad de combinar una aplicación web, una extensión de navegador, una API REST y una base de datos relacional dentro de una arquitectura centralizada. La separación entre presentación, servicios, lógica de negocio y persistencia facilita la evolución de cada componente y el mantenimiento de las reglas de evaluación, como se explica en el capítulo~\ref{cap:marco-tecnologico}.
 
-\begin{table}[H]
+Una consecuencia relevante es que la \textbf{integración con plataformas externas condiciona el alcance real del sistema}. Las pruebas realizadas con Mercado Libre mostraron restricciones de acceso a ciertos recursos y diferencias entre publicaciones individuales y de catálogo. Por ello, la existencia de una API pública no garantiza que todos los atributos requeridos sean accesibles o se presenten de manera uniforme. La normalización, la identificación de datos ausentes y el tratamiento de variantes de publicación deben considerarse responsabilidades centrales de la arquitectura.
+
+El mecanismo inicial de riesgo basado en reglas ofrece una ventaja para esta etapa: permite relacionar el índice con los factores que lo componen. Sin embargo, esa interpretabilidad no garantiza que las ponderaciones sean óptimas. Los ajustes efectuados durante las pruebas muestran la importancia de documentar los criterios, someterlos a regresión automatizada y revisarlos a medida que se obtiene evidencia adicional.
+
+\subsection{Implicancias para los usuarios y la sociedad}\label{subsec:ml-implicancias-usuarios}
+
+MarketLens propone complementar los mecanismos de reputación de los marketplaces mediante una presentación integrada de señales observables. Un índice numérico acompañado por explicaciones y por el estado de cobertura de la información puede ayudar al comprador a identificar aspectos que merecen una revisión adicional antes de decidir una compra.
+
+No obstante, un precio bajo, un historial comercial reducido o una combinación de ambos \textbf{no demuestra por sí sola una estafa}. El índice expresa el resultado de las reglas implementadas y no constituye una probabilidad de fraude estadísticamente calibrada. En consecuencia, la interfaz debe evitar mensajes concluyentes sobre la legitimidad de vendedores o publicaciones, presentar las limitaciones del análisis y mantener la decisión final en manos del usuario.
+
+El beneficio social esperado consiste en facilitar decisiones más informadas y promover la comprensión de factores de riesgo. Su magnitud todavía no fue medida mediante estudios sistemáticos de uso, satisfacción o prevención de pérdidas; por lo tanto, constituye un potencial aporte y no un impacto demostrado.
+
+\subsection{Implicancias colaborativas e informativas}\label{subsec:ml-implicancias-colaborativas}
+
+El diseño contempla la recepción de reportes de usuarios y su utilización para elaborar estadísticas agregadas. Este enfoque podría convertir experiencias aisladas en información estructurada que complemente los atributos de publicaciones y vendedores. También podría permitir el seguimiento temporal de indicadores, categorías y plataformas cuando se disponga de datos suficientes.
+
+Sin embargo, los reportes pueden incluir errores, interpretaciones subjetivas o información maliciosa. En una futura versión operativa será necesario establecer procedimientos de revisión, tratamiento de evidencia, prevención de duplicados y corrección de reportes. El diseño colaborativo es parte de la propuesta; \textbf{no se ha documentado todavía una validación integral de ese circuito en el prototipo presentado}.
+
+\subsection{Implicancias económicas}\label{subsec:ml-implicancias-economicas}
+
+La arquitectura y las tecnologías empleadas permiten considerar un esquema de implementación progresiva, pero no eliminan los costos de desarrollo, operación, soporte y mantenimiento. El capítulo~\ref{cap:economica} estimó una inversión inicial de \textbf{USD~19\,000} y costos operativos anuales iniciales de aproximadamente \textbf{USD~6\,650}. El análisis proyectó posibles ingresos mediante un modelo freemium y prestaciones complementarias.
+
+En el escenario base simulado, los flujos a cinco años arrojan un valor actual neto aproximado de \textbf{USD~28\,081} con una tasa de descuento ilustrativa del 10\,\%, una tasa interna de retorno de aproximadamente \textbf{42,57\,\%} y un repago simple de \textbf{2,64 años}. Estos resultados dependen de hipótesis de adopción, conversión de usuarios, precios y costos: \textbf{no representan ingresos observados ni prueban una oportunidad comercial validada}. La proyección conservadora del mismo capítulo muestra que una adopción insuficiente podría impedir recuperar la inversión dentro del horizonte considerado.
+
+\subsection{Implicancias legales y éticas}\label{subsec:ml-implicancias-eticas}
+
+La operación de un sistema que analiza publicaciones y vendedores exige considerar el tratamiento de datos personales, las condiciones de uso de los servicios externos y el posible perjuicio reputacional derivado de evaluaciones incorrectas. La recolección de información debe limitarse a las necesidades del servicio y acompañarse de controles de acceso, conservación y rectificación adecuados.
+
+Una puntuación elevada podría influir sobre la percepción de un comprador aun cuando los datos disponibles sean incompletos. Por ese motivo, la transparencia de los factores, la comunicación de la cobertura y la posibilidad de corregir información equivocada son requisitos de responsabilidad, no solamente decisiones de interfaz. Los riesgos asociados se analizan también en el capítulo~\ref{cap:riesgos}.
+
+\section{Conclusiones y cumplimiento de objetivos}\label{sec:ml-conclusiones}
+
+\subsection{Balance del objetivo general}\label{subsec:ml-balance-general}
+
+El objetivo general formulado en el capítulo~\ref{cap:introduccion} fue desarrollar y verificar un prototipo de plataforma y extensión que procesara información de publicaciones y vendedores, produjera evaluaciones interpretables y permitiera consultar resultados mediante servicios centralizados.
+
+La evidencia disponible respalda un \textbf{cumplimiento técnico parcial y concreto}: se implementaron componentes funcionales de la aplicación, el backend y la persistencia; se verificaron reglas del motor mediante pruebas automatizadas; y se comprobó la obtención y presentación de evaluaciones para casos específicos de Mercado Libre. En cambio, la cobertura integral de marketplaces, los reportes colaborativos, la operación a escala y la eficacia para prevenir estafas continúan fuera del alcance validado.
+
+\subsection{Grado de cumplimiento de los objetivos específicos}\label{subsec:ml-cumplimiento-objetivos}
+
+La tabla~\ref{tab:ml-cumplimiento-objetivos} retoma los seis objetivos específicos de la sección~\ref{subsec:ml-objetivos-especificos}. Los estados indican \textit{qué se comprobó en la etapa documentada}, no una certificación general del sistema.
+
+\begin{table}[htbp]
     \centering
-    \caption{Grado de cumplimiento de los objetivos específicos (ejemplo de estructura)}
-    \label{tab:cumplimiento}
-    \small
-    \begin{tabularx}{\textwidth}{l L l L}
+    \caption{Grado de cumplimiento de los objetivos específicos de MarketLens}
+    \label{tab:ml-cumplimiento-objetivos}
+    \scriptsize
+    \begin{tabularx}{\textwidth}{@{}p{1.3cm} p{2.25cm} p{1.8cm} X@{}}
         \toprule
-        \tb{Objetivo} & \tb{Evidencia} & \tb{Grado} & \tb{Observación} \\
+        \textbf{Objetivo} & \textbf{Propósito resumido} & \textbf{Estado} & \textbf{Fundamento y alcance de la evidencia} \\
         \midrule
-        OE-1 & Capítulo~\ref{cap:resultados} & Alcanzado & \completar{...} \\
-        OE-2 & \completar{...} & Parcial & \completar{...} \\
+        OE-01 & Centralizar información & Parcial & API y persistencia implementadas; hay operaciones funcionales verificadas, pero no cobertura integral de fuentes y casos. \\
+        OE-02 & Generar evaluaciones interpretables & Verificado en casos & La publicación \#70 muestra 40/100, nivel \texttt{MEDIUM}, contribuciones y cobertura \texttt{PARTIAL} (2/3); ver tabla~\ref{tab:ml-riesgo-70}. \\
+        OE-03 & Comparar precios con suficiencia de evidencia & Verificado en casos & El análisis con una sola referencia provisional no produjo penalización por precio; ver tabla~\ref{tab:ml-precio-ps5}. \\
+        OE-04 & Integrar clientes con el backend & Parcial & Se observó consistencia entre extensión y API en el caso \#70; falta validación exhaustiva de los flujos de ambos clientes. \\
+        OE-05 & Prever colaboración y análisis agregado & Diseño parcial & Los circuitos y componentes están previstos; no consta una prueba integral documentada del reporte colaborativo y sus estadísticas. \\
+        OE-06 & Verificar y documentar el prototipo & Parcial & Se registraron 62 pruebas automatizadas sin fallos ni errores y casos funcionales concretos, pero quedan escenarios y criterios por validar. \\
         \bottomrule
     \end{tabularx}
 \end{table}
+
+Los indicadores I-01 a I-05 de la tabla~\ref{tab:ml-indicadores} permiten relacionar los resultados observables con los objetivos. En particular, I-02 e I-05 se vinculan con la evaluación de 40/100 obtenida para la publicación \#70, I-03 con la ausencia de una penalización sin referencias suficientes e I-04 con la ejecución registrada de las pruebas automatizadas. El detalle de las pruebas automatizadas deberá integrarse en los apéndices técnicos de la versión LaTeX; esa evidencia no debe confundirse con una medición de precisión de detección.
+
+\subsection{Respuesta a la hipótesis de investigación}\label{subsec:ml-respuesta-hipotesis}
+
+La hipótesis enunciada en la sección~\ref{sec:ml-hipotesis} sostiene que el análisis de publicaciones, perfiles y patrones de actividad permitiría generar índices suficientemente precisos para asistir a los usuarios en la prevención de estafas digitales.
+
+Los resultados aportan \textbf{evidencia favorable a la factibilidad técnica de generar índices de riesgo explicables} a partir de algunos indicadores observables. En la publicación interna \#70, por ejemplo, el sistema combinó un precio un 50,60\,\% inferior a la mediana de 12 referencias y un historial comercial con una venta observada. Tras el ajuste de las ponderaciones, el resultado fue \textbf{40/100, riesgo medio}, acompañado por cobertura parcial de dos factores sobre tres. El caso permite comprobar la ejecución de las reglas, pero no la condición fraudulenta de la publicación.
+
+\textbf{La hipótesis no puede considerarse confirmada ni rechazada de manera definitiva.} No se dispone todavía de un conjunto representativo de publicaciones con etiquetas confiables que permita estimar sensibilidad, especificidad, precisión, exhaustividad o tasa de falsos positivos. Tampoco se ha verificado mediante estudios de usuarios que las evaluaciones reduzcan efectivamente la probabilidad de sufrir una estafa. Las pruebas realizadas sustentan el funcionamiento inicial del mecanismo, pero no la afirmación de eficacia preventiva.
+
+\subsection{Conclusiones técnicas}\label{subsec:ml-conclusiones-tecnicas}
+
+La arquitectura cliente--servidor en capas resultó adecuada para organizar el desarrollo inicial. El uso de componentes desacoplados permitió implementar y probar funcionalidades de manera incremental, y la extensión de navegador demostró ser una vía de interacción viable para algunas publicaciones de Mercado Libre. No obstante, las restricciones de APIs y las diferencias entre publicaciones individuales y de catálogo limitan la cobertura efectiva y exigen estrategias de identificación y extracción más flexibles.
+
+La comparación automática de precios mostró dos comportamientos relevantes. En el primer ensayo se recuperaron nueve candidatos, pero solamente una referencia provisional resultó suficientemente comparable; el sistema evitó calcular conclusiones estadísticas no respaldadas y no aplicó penalización de precio. En otro ensayo se utilizaron 12 referencias y se obtuvo una desviación de aproximadamente $-50{,}60$\,\% respecto de la mediana. Estos resultados ilustran que \textbf{la disponibilidad y la calidad de las referencias afectan directamente a la evaluación}.
+
+Asimismo, la similitud textual mediante TF--IDF y coseno ayudó a seleccionar candidatos, pero no garantiza equivalencia comercial entre productos de diferente condición, capacidad, variante o contenido del paquete. Los criterios de comparación deberán seguir incorporando restricciones semánticas y de atributos verificables, sin convertirse en reglas rígidas que solo sirvan para un producto.
+
+La modificación de 25 a 40 puntos en el caso \#70, tras revisar los aportes de precio e historial, puso de manifiesto la necesidad de mantener las ponderaciones explícitas y acompañar los cambios con nuevas pruebas. La ejecución de 62 pruebas automatizadas sin fallos ni errores constituye evidencia útil de regresión para los escenarios cubiertos; no demuestra por sí sola la calidad predictiva del modelo.
+
+\subsection{Viabilidad y proyección}\label{subsec:ml-conclusion-viabilidad}
+
+Desde el punto de vista tecnológico, los resultados justifican continuar perfeccionando el prototipo. Desde el punto de vista económico, los cálculos del capítulo~\ref{cap:economica} indican que el proyecto \textit{podría} ser sostenible bajo determinados supuestos, pero su viabilidad comercial no está comprobada. Las proyecciones dependen de la adopción de usuarios, su disposición a pagar, el costo de operar y moderar el servicio y las restricciones de integración con terceros.
+
+Por este motivo, no sería apropiado interpretar el VAN o la TIR simulados como rendimientos asegurados. Antes de considerar una implementación comercial deberán contrastarse los costos estimados con presupuestos reales y ponerse a prueba las hipótesis de demanda, conversión y retención. La prioridad inmediata debe ser consolidar la fiabilidad técnica y la comprensión de los resultados antes de ampliar el alcance o los gastos operativos.
+
+\section{Limitaciones del trabajo}\label{sec:ml-limitaciones-conclusiones}
+
+El alcance de los resultados se encuentra condicionado por limitaciones de naturaleza diferente. Su identificación es necesaria para comprender qué conclusiones pueden extraerse de los ensayos y cuáles requieren evidencia adicional.
+
+\begin{table}[htbp]
+    \centering
+    \caption{Limitaciones identificadas y consecuencias para la interpretación de los resultados}
+    \label{tab:ml-limitaciones-conclusiones}
+    \small
+    \begin{tabularx}{\textwidth}{@{}p{2.2cm} X X@{}}
+        \toprule
+        \textbf{Categoría} & \textbf{Limitación} & \textbf{Consecuencia} \\
+        \midrule
+        Técnica & Diferencias entre publicaciones individuales y de catálogo; restricciones de acceso a servicios externos. & La cobertura funcional comprobada se limita a determinadas publicaciones y fuentes. \\
+        Datos & Referencias de precios seleccionadas provisionalmente, atributos ausentes y posible falta de equivalencia comercial. & El índice depende de la calidad de la información; una cobertura parcial exige cautela. \\
+        Validación & Casos puntuales y pruebas automatizadas sin conjunto amplio de publicaciones etiquetadas. & No es posible cuantificar la eficacia frente a fraudes reales ni generalizar la puntuación. \\
+        Usuarios & No se documentaron ensayos sistemáticos de usabilidad, comprensión del índice o cambios de comportamiento. & El beneficio preventivo y la utilidad percibida permanecen como hipótesis por validar. \\
+        Mercado y operación & Adopción, precios, costos de mantenimiento y escalamiento expresados como proyecciones. & La rentabilidad y la sostenibilidad comercial no están demostradas. \\
+        \bottomrule
+    \end{tabularx}
+\end{table}
+
+También debe considerarse el posible sesgo que introduciría una comunidad poco representativa o un sistema de reportes insuficientemente moderado. Ningún resultado del prototipo debería usarse como fundamento único para acusar a un vendedor de fraude o restringir sus actividades.
+
+\section{Recomendaciones y trabajo futuro}\label{sec:ml-recomendaciones}
+
+\subsection{Consolidación técnica y funcional}\label{subsec:ml-recomendaciones-tecnicas}
+
+Se recomienda priorizar el soporte de las diferentes estructuras de publicaciones de Mercado Libre, perfeccionar la identificación de vendedores y distinguir de forma sistemática los atributos no disponibles. El motor debería poder devolver una evaluación parcial claramente identificada cuando exista información insuficiente, sin asignar riesgo por la mera ausencia de datos.
+
+También conviene fortalecer el manejo de fallas entre extensión, API y base de datos; revisar controles de acceso y documentar escenarios negativos, especialmente los de autenticación. Cada cambio en las reglas del motor o en la extracción de datos debería acompañarse de una prueba que impida reintroducir defectos corregidos.
+
+\subsection{Validación del mecanismo de riesgo}\label{subsec:ml-recomendaciones-validacion}
+
+La prioridad metodológica es construir un conjunto de evaluación representativo, con casos legítimos y casos fraudulentos determinados mediante fuentes verificables. Deberán definirse criterios de etiquetado, separación entre casos de ajuste y de prueba, tratamiento de incertidumbres y un procedimiento para revisar posibles falsos positivos.
+
+Una vez disponible ese material podrán calcularse métricas apropiadas, como precisión, exhaustividad, sensibilidad, especificidad y tasa de falsos positivos, además de examinar la calibración e interpretabilidad de las puntuaciones. Será necesario comparar el sistema con criterios base simples para establecer si las reglas aportan una mejora medible. No se proponen umbrales numéricos de eficacia mientras no exista un protocolo que permita justificarlos.
+
+En paralelo, conviene mejorar la evaluación de comparabilidad comercial mediante atributos de modelo, capacidad, condición y accesorios, sin depender exclusivamente de la coincidencia textual. La calidad de las referencias, sus fechas y su procedencia deberían quedar registradas para facilitar la revisión posterior de una evaluación.
+
+\subsection{Evolución colaborativa y experiencia de usuario}\label{subsec:ml-recomendaciones-evolucion}
+
+El desarrollo del circuito colaborativo debería incluir mecanismos para adjuntar y revisar evidencia, evitar reportes duplicados, moderar contenido y corregir registros. Sus datos no deberían integrarse automáticamente al índice con el mismo grado de confianza que los atributos verificables de una publicación.
+
+Una vez estabilizadas las funciones centrales, podrán ampliarse los gráficos del dashboard y evaluarse integraciones adicionales con otros marketplaces, condicionadas por la disponibilidad y los términos de acceso a los datos. Antes de incorporar técnicas de aprendizaje automático será necesario demostrar que existe una cantidad y calidad suficientes de datos para entrenar y validar modelos sin sobreajuste.
+
+Asimismo, se recomienda realizar pruebas con usuarios que examinen si comprenden correctamente la diferencia entre \textit{riesgo estimado}, \textit{cobertura de información} y \textit{confirmación de fraude}. Las observaciones obtenidas deberán guiar ajustes de la interfaz, el lenguaje utilizado y la presentación de advertencias.
+
+\subsection{Condiciones para un despliegue real}\label{subsec:ml-recomendaciones-despliegue}
+
+Antes de operar fuera de un entorno de desarrollo serán necesarios procedimientos de resguardo y recuperación de datos, monitoreo de errores, actualización de dependencias, seguridad de API, gestión de incidentes y revisión periódica de las condiciones de los marketplaces integrados. También deberán definirse políticas de tratamiento de datos personales, revisión de reportes, rectificación y atención de reclamos.
+
+La tabla~\ref{tab:ml-prioridades-futuras} resume una secuencia razonable de trabajo. Los niveles indican \textbf{prioridad técnica propuesta}, no plazos comprometidos ni tareas declaradas como terminadas.
+
+\begin{table}[htbp]
+    \centering
+    \caption{Prioridades propuestas y evidencias para la continuidad del proyecto}
+    \label{tab:ml-prioridades-futuras}
+    \scriptsize
+    \begin{tabularx}{\textwidth}{@{}p{1.45cm} X X@{}}
+        \toprule
+        \textbf{Prioridad} & \textbf{Actividad recomendada} & \textbf{Evidencia esperada} \\
+        \midrule
+        Alta & Resolver el tratamiento de publicaciones de catálogo y datos faltantes. & Pruebas con diferentes estructuras de publicación y cobertura explícita. \\
+        Alta & Completar escenarios de seguridad y regresión. & Casos reproducibles, resultados de ejecución y validación de solicitudes no autorizadas. \\
+        Alta & Preparar el protocolo de validación del motor de riesgo. & Conjunto de referencia, reglas de etiquetado y métricas justificadas. \\
+        Media & Implementar y validar integralmente reportes y estadísticas. & Evidencia de flujos completos y controles de calidad de reportes. \\
+        Media & Evaluar comprensión del índice por usuarios. & Registros de pruebas de usabilidad y cambios derivados. \\
+        Posterior & Ampliar marketplaces y evaluar modelos de mayor complejidad. & Comparaciones reproducibles y evaluación de costos y beneficios. \\
+        \bottomrule
+    \end{tabularx}
+\end{table}
+
+\section{Contribución del trabajo y cierre}\label{sec:ml-cierre}
+
+La contribución principal de MarketLens en esta etapa no es un método de detección de fraude estadísticamente validado, sino una \textbf{implementación documentada y verificable de un proceso de evaluación interpretable con información heterogénea y parcialmente disponible}. El trabajo permite observar, en casos concretos, cómo la selección de referencias, la historia comercial del vendedor, las ponderaciones y la cobertura de datos modifican la interpretación de un resultado.
+
+Como aprendizaje de ingeniería de software, el proyecto muestra la necesidad de mantener trazabilidad entre requisitos, indicadores, código, pruebas y limitaciones. También evidencia que integrar datos externos no es únicamente un problema de conexión con APIs: involucra identificar diferencias de estructura, manejar ausencia de atributos, revisar la comparabilidad de los datos y comunicar incertidumbre.
+
+En síntesis, MarketLens constituye una base funcional para continuar investigando la evaluación preventiva de riesgo en marketplaces digitales. La siguiente etapa deberá concentrarse en mejorar la cobertura y la robustez de los componentes ya desarrollados, validar empíricamente el mecanismo y comprobar que la información presentada realmente ayuda a los usuarios. Solo entonces podrá establecerse con mayor fundamento el alcance de su contribución preventiva y su viabilidad de operación a mayor escala.
+
+% =============================================================
+% REVISIÓN EDITORIAL (no se imprime)
+% - Las evidencias de los apéndices A/B aún deben integrarse desde Word.
+% - Confirmar que los labels del capítulo 7 se mantengan:
+%   tab:ml-riesgo-70; tab:ml-precio-ps5.
+% - La afirmación de 62 pruebas corresponde al resumen Maven registrado.
+% - No agregar métricas predictivas sin un conjunto etiquetado.
+% - No requiere nuevas entradas bibliográficas para este capítulo.
+% =============================================================

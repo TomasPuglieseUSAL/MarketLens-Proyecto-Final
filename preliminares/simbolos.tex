@@ -1,35 +1,55 @@
 %!TEX root = ../main.tex
-% SÍMBOLOS matemáticos o de notación usados en el documento.
-%
-% Definir:   \newglossaryentry{sym:clave}{type=symbols, name={\ensuremath{...}},
-%                description={...}, sort={clave}}
-% Usar:      \gls{sym:clave}
-% Si no se usa ningún símbolo, la sección no se imprime.
+% SÍMBOLOS: solo registrar los que aparezcan en el texto matemático.
+% Usar \gls{sym:clave} o \glsadd{sym:clave} para que aparezcan en el listado.
 
 \newglossaryentry{sym:van}{
     type=symbols,
-    name={\ensuremath{\mathit{VAN}}},
-    description={Valor actual neto del flujo de caja proyectado},
+    name={\ensuremath{\mathrm{VAN}}},
+    description={Valor actual neto de los flujos de caja proyectados},
     sort={van}
 }
 
 \newglossaryentry{sym:r}{
     type=symbols,
     name={\ensuremath{r}},
-    description={Tasa de descuento anual utilizada en la evaluación económica},
+    description={Tasa de descuento anual empleada en la evaluación económica},
     sort={r}
 }
 
 \newglossaryentry{sym:fc}{
     type=symbols,
     name={\ensuremath{FC_t}},
-    description={Flujo de caja neto del período \ensuremath{t}},
+    description={Flujo de caja neto correspondiente al período \ensuremath{t}},
     sort={fc}
 }
 
-\newglossaryentry{sym:f1}{
+\newglossaryentry{sym:i0}{
     type=symbols,
-    name={\ensuremath{F_1}},
-    description={Media armónica entre precisión y exhaustividad de un clasificador},
-    sort={f1}
+    name={\ensuremath{I_0}},
+    description={Inversión inicial contemplada en la proyección financiera},
+    sort={i0}
 }
+
+\newglossaryentry{sym:p}{
+    type=symbols,
+    name={\ensuremath{P}},
+    description={Valoración ordinal de probabilidad en la matriz de riesgos},
+    sort={probabilidad}
+}
+
+\newglossaryentry{sym:impacto}{
+    type=symbols,
+    name={\ensuremath{I}},
+    description={Valoración ordinal del impacto en la matriz de riesgos},
+    sort={impacto}
+}
+
+\newglossaryentry{sym:e}{
+    type=symbols,
+    name={\ensuremath{E}},
+    description={Exposición relativa al riesgo, definida por \ensuremath{E=P\times I}},
+    sort={exposicion}
+}
+
+% La métrica F_1 se menciona como evaluación futura, pero no se calculó.
+% No se incorpora al listado como resultado medido.

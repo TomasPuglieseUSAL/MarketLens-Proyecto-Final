@@ -1,45 +1,111 @@
 %!TEX root = ../main.tex
 % =============================================================
-%  CAPÍTULO 1 — INTRODUCCIÓN            (Entrega 1 · 5 % · 9/6)
+% CAPÍTULO 1 — INTRODUCCIÓN · MARKETLENS
+% Adaptado a la estructura del Proyecto Final USAL.
+% El abstract se mantiene en preliminares/abstract.tex, no aquí.
+% Requiere las entradas bibliográficas ml-tadelis-2016,
+% ml-resnick-2006 y ml-phua-2010 en refs.bib.
 % =============================================================
 
 \chapter{Introducción}\label{cap:introduccion}
 
-\begin{guia}[Guía de la cátedra: qué se evalúa en este capítulo]
+MarketLens es un proyecto de investigación aplicada y desarrollo de software orientado a asistir a los usuarios en la evaluación preventiva del riesgo asociado a publicaciones de plataformas de compraventa digital. La propuesta combina información disponible sobre productos y vendedores, un mecanismo de análisis basado en reglas y una arquitectura que contempla la participación colaborativa. Su propósito es presentar indicadores comprensibles antes de que el comprador tome una decisión, sin sustituir los mecanismos de protección de cada marketplace ni afirmar que una publicación determinada constituye una estafa.
+
+El proyecto surge ante la dificultad de interpretar de forma conjunta señales que pueden encontrarse dispersas, ser incompletas o depender de la plataforma consultada. En su primera etapa, el desarrollo y las pruebas se concentran en determinadas publicaciones de Mercado Libre. La incorporación de otros marketplaces forma parte del diseño previsto y requiere validaciones adicionales.
+
+\section{Contexto y antecedentes}\label{sec:ml-contexto}
+
+Las plataformas de compraventa digital facilitan el intercambio de productos entre compradores y vendedores que, en muchos casos, no mantienen una relación previa. Este modelo permite acceder a numerosas ofertas, pero también introduce incertidumbre sobre la identidad de los participantes, el estado de los productos y la confiabilidad de las condiciones de venta. Entre los riesgos posibles se encuentran las publicaciones engañosas, los productos inexistentes, los perfiles suplantados y las solicitudes de pago fuera de los mecanismos previstos por las plataformas.
+
+Marketplaces como Mercado Libre y eBay utilizan herramientas de reputación, calificaciones y protección al comprador. Facebook Marketplace, por su parte, constituye otro entorno de compraventa relevante para el alcance conceptual del proyecto. Estas soluciones proporcionan información y medidas de seguridad propias; sin embargo, los atributos observables y los procedimientos de consulta no son necesariamente equivalentes entre plataformas. MarketLens se plantea como una herramienta complementaria para reunir y explicar señales de riesgo, no como un reemplazo de los controles existentes.
+
+La relevancia de la reputación en mercados electrónicos cuenta con antecedentes académicos. Resnick y colaboradores estudiaron experimentalmente su influencia sobre el comportamiento de los compradores \parencite{ml-resnick-2006}; Tadelis examinó el funcionamiento y las limitaciones de los sistemas de reputación y retroalimentación en plataformas digitales \parencite{ml-tadelis-2016}. En paralelo, las investigaciones sobre detección de fraude mediante análisis de datos señalan dificultades relacionadas con el acceso a información, la evolución del fraude y la disponibilidad de ejemplos confiables para validar modelos \parencite{ml-phua-2010}.
+
+Estos antecedentes justifican examinar mecanismos que combinen varios indicadores, pero no permiten suponer que una puntuación calculada automáticamente equivalga a una probabilidad comprobada de fraude. La fundamentación y los trabajos relacionados se desarrollan en el capítulo~\ref{cap:marco-teorico}.
+
+\section{Planteamiento del problema}\label{sec:ml-problema-intro}
+
+\subsection{Situación problemática}\label{subsec:ml-situacion}
+
+Un comprador que analiza una publicación puede disponer de su precio, una descripción del producto y ciertos datos del vendedor. No obstante, esos atributos no siempre permiten determinar si la oferta merece una revisión adicional. Por ejemplo, un precio bajo puede corresponder a una oportunidad legítima, a un producto usado o a características diferentes de las observadas en otras ofertas. Del mismo modo, un historial comercial breve no demuestra por sí solo una conducta fraudulenta.
+
+El problema abordado consiste en la \textbf{dificultad de reunir, contrastar e interpretar señales observables de riesgo} cuando la información es parcial, heterogénea o está distribuida entre distintas fuentes. La ausencia de datos también puede producir interpretaciones incorrectas si se confunde una característica no observada con un comportamiento negativo. Por ello, resulta necesario distinguir la puntuación calculada del grado de cobertura de la información utilizada.
+
+Desde el punto de vista técnico, el desafío incluye obtener atributos de publicaciones y vendedores, normalizarlos, seleccionar ofertas comparables y comunicar los motivos de una evaluación. Las restricciones de algunas interfaces externas y las diferencias entre publicaciones individuales y de catálogo pueden limitar la automatización de estos procesos.
+
+\subsection{Pregunta de investigación}\label{subsec:ml-pregunta}
+
+La pregunta que guía el trabajo es la siguiente: \emph{¿en qué medida el análisis conjunto de atributos observables de publicaciones y vendedores permite generar indicadores de riesgo interpretables y técnicamente consistentes, y qué validación adicional sería necesaria para determinar su utilidad en la prevención de fraudes reales?}
+
+Esta formulación diferencia dos cuestiones. La primera es verificable mediante pruebas del software: comprobar que los procedimientos producen resultados coherentes con las reglas definidas. La segunda exige evidencia empírica adicional: establecer si esos resultados permiten distinguir adecuadamente situaciones fraudulentas de operaciones legítimas.
+
+\section{Objetivos}\label{sec:ml-objetivos}
+
+\subsection{Objetivo general}\label{subsec:ml-objetivo-general}
+
+Desarrollar y verificar un prototipo de plataforma web y extensión de navegador que permita analizar publicaciones y vendedores de marketplaces digitales, generar un \textbf{índice de riesgo entre 0 y 100} acompañado de factores explicativos y cobertura de información, y registrar resultados consultables mediante una API centralizada, como base para una futura evaluación de su eficacia preventiva.
+
+\subsection{Objetivos específicos}\label{subsec:ml-objetivos-especificos}
+
 \begin{enumerate}
-    \item \textbf{Descripción del problema}: concreto, anclado en evidencia
-          (datos duros con fuente, casos reales, competidores nombrados).
-    \item \textbf{Objetivo general}: uno solo, medible, en un párrafo.
-          Los \textbf{objetivos específicos} se desprenden de él y
-          \emph{no} son los pasos del plan de trabajo.
-    \item \textbf{Hipótesis}: explícita, formulada como pregunta o
-          afirmación de investigación que pueda responderse en el
-          capítulo~\ref{cap:conclusiones}.
-    \item \textbf{Relevancia}: por qué importa, a quién beneficia, qué les
-          falta a las soluciones existentes.
-    \item \textbf{Alcance y recursos}: qué entra y qué no; stack y fuentes
-          de datos previstos. El ``alcance que nunca cierra'' es el riesgo
-          número uno de la materia.
+    \item \textbf{Centralizar la información relevante.} Implementar servicios de registro, consulta y persistencia de publicaciones, vendedores y evaluaciones, de modo que los resultados puedan recuperarse y analizarse posteriormente.
+
+    \item \textbf{Generar evaluaciones interpretables.} Aplicar reglas y ponderaciones a los factores disponibles para producir una puntuación, una clasificación cualitativa, la contribución de cada factor y una indicación de la cobertura del análisis.
+
+    \item \textbf{Comparar precios con criterios de suficiencia.} Identificar publicaciones potencialmente comparables mediante procesamiento textual y comprobaciones adicionales; evitar penalizaciones por precio cuando la evidencia no permita establecer referencias adecuadas.
+
+    \item \textbf{Integrar clientes con el backend.} Vincular la aplicación web y la extensión de navegador con los servicios de evaluación, de manera que el usuario pueda consultar los resultados generados por el sistema.
+
+    \item \textbf{Prever la colaboración y el análisis agregado.} Diseñar la incorporación de reportes de usuarios y estadísticas sobre indicadores de riesgo, distinguiendo las funciones disponibles de aquellas que requieran desarrollo y validación posterior.
+
+    \item \textbf{Verificar y documentar el comportamiento del prototipo.} Ejecutar pruebas automatizadas, funcionales y de integración con criterios de aceptación observables, registrar sus resultados y explicitar las limitaciones para extrapolarlos a casos reales de fraude.
 \end{enumerate}
-Extensión orientativa: 4 a 6 páginas. Redacción impersonal, sin ``yo
-creo'', oraciones de 15 a 22 palabras, sin palabras vacías
-(``claramente'', ``obviamente''). Toda cifra con su fuente citada, por
-ejemplo \citep{breiman2001}.
-\end{guia}
 
-\completar{Desarrollo del capítulo. Las secciones y subsecciones se
-organizan como resulte mejor para el proyecto.}
+La operacionalización de estos objetivos se desarrolla en el capítulo~\ref{cap:metodologia}. En particular, los indicadores I-01 a I-05 verifican la integridad de la respuesta de evaluación, la aplicación de ponderaciones, el tratamiento de referencias insuficientes, la ejecución de pruebas automatizadas y la consistencia del resultado mostrado en la extensión. La evidencia disponible se presenta en el capítulo~\ref{cap:resultados}.
 
-\section{\completar{Nombre de la sección}}
+\section{Hipótesis de investigación}\label{sec:ml-hipotesis}
 
-\begin{ejemplo}[Ejemplo: forma de un objetivo general]
-Desarrollar un sistema de \completar{qué} para \completar{quién} en
-\completar{dónde}, que permita \completar{resultado medible} mediante
-\completar{enfoque o tecnología central}.
-\end{ejemplo}
+La hipótesis principal planteada en el documento original del proyecto sostiene que \emph{es posible detectar comportamientos potencialmente fraudulentos en plataformas de compraventa digital mediante el análisis de publicaciones, perfiles de usuario y patrones de actividad, generando índices de riesgo con precisión suficiente para asistir de manera consistente a los compradores en la prevención de estafas}.
 
-\completar{Texto.}
+Para su evaluación se distinguen dos niveles de evidencia. Por un lado, la \textbf{verificación funcional} puede comprobar que el sistema procesa los datos disponibles, aplica las reglas previstas y produce resultados interpretables y reproducibles en los casos ensayados. Por otro lado, la \textbf{validación de la capacidad de detección} requiere un conjunto representativo de operaciones con una condición de referencia confiable, además de métricas de desempeño y un protocolo de evaluación independiente.
 
-\subsection{\completar{Nombre de la subsección}}
+En la etapa documentada se dispone de pruebas funcionales y automatizadas, pero no de un conjunto etiquetado suficiente para demostrar la precisión del mecanismo frente a fraudes reales. Por lo tanto, el cumplimiento técnico de los objetivos implementados no debe interpretarse como confirmación integral de la hipótesis. Esta distinción se retoma en el análisis de resultados y en el capítulo~\ref{cap:conclusiones}.
 
-\completar{Texto.}
+\section{Relevancia y aportes esperados}\label{sec:ml-relevancia}
+
+La relevancia del proyecto radica en proponer una evaluación preventiva que pueda ser consultada por el usuario antes de concretar una operación. Una herramienta de esta naturaleza podría facilitar la identificación de aspectos que merecen atención, especialmente cuando los datos sobre el vendedor o las referencias de precio resultan incompletos. La utilidad de esas advertencias deberá contrastarse mediante pruebas con usuarios y evidencia representativa, antes de atribuirles un efecto comprobado sobre la reducción del fraude.
+
+Desde la ingeniería de software, MarketLens integra una API REST, persistencia relacional, un cliente web y una extensión de navegador. La separación entre obtención de datos, cálculo del riesgo y presentación de resultados permite revisar reglas o añadir fuentes sin depender de una única interfaz. Asimismo, la exposición de los factores y de la cobertura busca favorecer la interpretación crítica de las puntuaciones.
+
+En una evolución posterior, la recepción de reportes colaborativos y la visualización agregada de indicadores podrían contribuir al estudio de patrones recurrentes. Su valor dependerá de la calidad de los datos, de mecanismos de revisión de reportes y de una participación de usuarios suficiente; por ese motivo, estos beneficios se describen como potenciales y no como resultados ya demostrados.
+
+\section{Alcance, restricciones y recursos}\label{sec:ml-alcance}
+
+\subsection{Alcance del prototipo}\label{subsec:ml-alcance-prototipo}
+
+La primera implementación comprende los servicios de backend desarrollados con Java y Spring Boot, el almacenamiento en PostgreSQL, una aplicación web construida con React y TypeScript y una extensión de navegador utilizada para iniciar análisis desde determinadas publicaciones. El procesamiento incorpora reglas de evaluación, análisis de precios basado en similitud textual y procedimientos que distinguen factores disponibles de información faltante.
+
+Las comprobaciones documentadas se concentran en publicaciones de Mercado Libre y en escenarios de prueba controlados. El alcance incluye la comunicación entre los componentes mencionados y la recuperación de resultados, pero no presupone compatibilidad general con todos los tipos de publicación ni con todos los marketplaces del objetivo conceptual.
+
+\subsection{Restricciones y elementos fuera del alcance validado}\label{subsec:ml-restricciones}
+
+\begin{itemize}
+    \item \textbf{Acceso a datos externos:} determinadas interfaces y atributos de terceros presentan restricciones, lo que obliga a tratar información ausente sin inferir automáticamente un resultado desfavorable.
+    \item \textbf{Cobertura de marketplaces:} la integración comprobada es parcial y se centra en Mercado Libre. Facebook Marketplace, Temu y otras plataformas permanecen como posibilidades de ampliación.
+    \item \textbf{Comparabilidad comercial:} un título similar no garantiza que dos productos coincidan en modelo, variante, estado o accesorios; las referencias seleccionadas automáticamente pueden ser provisionales.
+    \item \textbf{Colaboración y estadísticas:} el sistema de reportes y las funciones de análisis agregado forman parte de la propuesta, pero su madurez y validación deben acreditarse mediante pruebas específicas.
+    \item \textbf{Eficacia preventiva:} no se ha establecido una tasa de acierto para detectar fraudes ni una reducción comprobada de pérdidas económicas. El índice no es una sentencia de fraude ni una probabilidad estadística calibrada.
+\end{itemize}
+
+\subsection{Recursos técnicos y fuentes de información}\label{subsec:ml-recursos}
+
+La solución emplea herramientas de desarrollo y control de versiones, pruebas automatizadas mediante Maven y servicios REST para la comunicación entre componentes. Los datos considerados provienen de los registros internos, de atributos accesibles mediante las interfaces de los marketplaces y de la información visible que puede procesar la extensión en las publicaciones compatibles. La arquitectura y las decisiones tecnológicas se detallan en el capítulo~\ref{cap:marco-tecnologico}; las estimaciones de inversión y costos operativos, en el capítulo~\ref{cap:economica}.
+
+% =============================================================
+% CONTROL EDITORIAL — NO SE IMPRIME
+% 1. No incluir el Abstract aquí: corresponde a preliminares/abstract.tex.
+% 2. Revisar los objetivos 5 y 6 conforme avance la validación de reportes.
+% 3. No afirmar precisión de detección sin conjunto etiquetado.
+% 4. Incorporar las 3 referencias adjuntas a refs.bib.
+% 5. Revisar extensión de página en la plantilla USAL completa.
+% =============================================================

@@ -1,105 +1,346 @@
 %!TEX root = ../main.tex
 % =============================================================
-%  CAPÍTULO 5 — JUSTIFICACIÓN ECONÓMICA (Entrega 5 · 15 % · 15/9)
+% CAPÍTULO 5 — JUSTIFICACIÓN ECONÓMICA · MARKETLENS
+% Adaptación a la plantilla USAL del documento académico original.
+% Los flujos y escenarios son simulaciones, no resultados comerciales.
+% Los escenarios plurianuales conservador/favorable son un análisis
+% de sensibilidad NUEVO, construido aplicando 0.5x/1.5x a los usuarios
+% del escenario base y manteniendo los costos iguales para comparar.
 % =============================================================
 
-\chapter{Justificación económica}\label{cap:economica}
+\chapter{Justificación económica y beneficios esperados}\label{cap:economica}
 
-\begin{guia}[Guía de la cátedra: qué se evalúa en este capítulo]
-Es el capítulo de mayor peso individual (15\,\%). Se evalúa como una
-evaluación de proyectos de inversión:
-\begin{enumerate}
-    \item \textbf{Análisis de mercado y competidores}: tamaño, segmentos,
-          precios de referencia.
-    \item \textbf{Modelo de negocio}: B2B, B2C, B2G o interno; niveles de
-          precio y fuentes de ingreso.
-    \item \textbf{Inversión inicial} desglosada por rol y tiempo, más
-          infraestructura.
-    \item \textbf{Costos operativos} recurrentes.
-    \item \textbf{Escenarios} pesimista, base y optimista, con flujo de caja
-          proyectado a 3 a 5 años.
-    \item \textbf{Indicadores}: \gls{van}, \gls{tir} y período de repago,
-          con una tasa de descuento construida y justificada con fuentes.
-    \item \textbf{Supuestos y restricciones} explícitos.
-\end{enumerate}
-Todo número con su origen: cotización, tarifa pública, estadística
-citada o estimación propia declarada como tal.
-\end{guia}
+\section{Alcance del análisis y criterios de estimación}\label{sec:ml-economia-alcance}
 
-\completar{Desarrollo del capítulo.}
+La evaluación económica de MarketLens analiza los recursos necesarios para desarrollar y operar una versión inicial de la plataforma, así como las condiciones hipotéticas que permitirían sostenerla mediante ingresos recurrentes. Se trata de un \textbf{estudio de factibilidad preliminar}, no de un balance de una empresa en funcionamiento. El prototipo se encuentra en etapa de desarrollo y validación; no se dispone de registros de ventas, tasas reales de conversión a planes pagos ni mediciones de disposición a pagar.
 
-\section{\completar{Nombre de la sección}}
+Los montos se expresan en \textbf{dólares estadounidenses (USD)} y, salvo que se señale lo contrario, constituyen \textbf{estimaciones propias del proyecto}. La tarifa de trabajo, los precios de suscripción, la cantidad de usuarios y el gasto en infraestructura no deben confundirse con cotizaciones o tarifas comerciales verificadas. Los flujos se presentan antes de impuestos, comisiones de cobro, gastos financieros y partidas no incluidas en el presupuesto; tampoco se modelan inflación ni variaciones cambiarias.
 
-\completar{Texto.}
+Se distinguen el \textit{costo económico del desarrollo} (valor estimado de las horas de trabajo, aun si no existe desembolso efectivo en la etapa académica), el \textit{costo operativo recurrente} y los \textit{ingresos potenciales}. Esta separación es necesaria para interpretar adecuadamente el punto de equilibrio, la recuperación de la inversión y los indicadores de rentabilidad.
 
-\begin{table}[H]
-    \centering
-    \caption{Inversión inicial desglosada (ejemplo de estructura)}
-    \label{tab:inversion}
-    \small
-    \begin{tabularx}{\textwidth}{L r r r L}
-        \toprule
-        \tb{Concepto} & \tb{Cantidad} & \tb{Unitario (USD)} & \tb{Total (USD)} & \tb{Fuente} \\
-        \midrule
-        Desarrollador full stack (meses) & 6 & \completar{2.500} & \completar{15.000} & \completar{encuesta salarial citada} \\
-        Científico de datos (meses) & 4 & \completar{...} & \completar{...} & \completar{...} \\
-        Diseño \gls{ux} (horas) & 80 & \completar{...} & \completar{...} & \completar{...} \\
-        Infraestructura inicial & 1 & \completar{...} & \completar{...} & \completar{tarifa pública del proveedor} \\
-        \midrule
-        \multicolumn{3}{r}{\tb{Total}} & \tb{\completar{...}} & \\
-        \bottomrule
-    \end{tabularx}
+\section{Mercado de referencia y propuesta de valor}\label{sec:ml-mercado}
+
+\subsection{Necesidad y segmentos potenciales}
+
+La propuesta de MarketLens responde a la dificultad de interpretar conjuntamente señales de riesgo observables en una publicación o vendedor. El informe de la Unidad Fiscal Especializada en Ciberdelincuencia (UFECI) sobre reportes recibidos durante 2024 documenta la relevancia de los fraudes en línea y de los incidentes vinculados con compraventas por Internet \citep{ml-ufeci-2025}. Tales cifras describen \textbf{reportes recibidos}, no constituyen una estimación del tamaño del mercado comercial al que podría acceder MarketLens ni de la totalidad de hechos delictivos.
+
+Se identifican dos segmentos de interés: (a) usuarios particulares que compran en marketplaces y buscan información preventiva comprensible; y (b) organizaciones vinculadas al comercio digital que podrían requerir métricas agregadas o herramientas de consulta. La propuesta inicial se orienta especialmente al primer segmento, dado que la extensión de navegador permite iniciar análisis desde una publicación consultada.
+
+\subsection{Soluciones existentes y diferenciación}
+
+Las plataformas de compraventa incorporan sus propios sistemas de reputación y mecanismos de protección; otras herramientas evalúan señales de confiabilidad de sitios o dominios. Estas soluciones cumplen funciones útiles, pero no resuelven necesariamente el objetivo de una \textbf{evaluación independiente y explicable de publicaciones con información de varias fuentes}. La investigación sobre sistemas de reputación también muestra su influencia sobre la confianza de los compradores \citep{ml-tadelis-2016,ml-resnick-2006}.
+
+\begin{table}[htbp]
+\centering
+\caption{Segmentos, alternativas y posible diferenciación de MarketLens}
+\label{tab:ml-econ-segmentos}
+\small
+\begin{tabularx}{\textwidth}{@{}p{0.22\textwidth} X X@{}}
+\toprule
+\textbf{Segmento} & \textbf{Soluciones y alternativas actuales} & \textbf{Propuesta o diferenciación prevista} \\
+\midrule
+Compradores particulares & Reputación, protección al comprador y evaluación manual de la publicación dentro de cada marketplace & Índice explicable, cobertura de evidencia y análisis contextual iniciado desde una extensión \\
+Organizaciones & Reportes internos, paneles de operación y análisis manual o contratado & Estadísticas agregadas, análisis recurrentes y posibles integraciones mediante API \\
+Investigadores y analistas & Registros institucionales, información pública y estudios específicos & Datos agregados sobre indicadores de riesgo, sujetos a calidad, privacidad y disponibilidad de información \\
+\bottomrule
+\end{tabularx}
 \end{table}
 
-\section{\completar{Nombre de la sección}}
+\textbf{Límites del análisis de mercado.} No se cuenta todavía con una estimación verificable del mercado total direccionable, una encuesta de disposición a pagar ni una comparación normalizada de precios de competidores. En consecuencia, los precios elegidos más adelante se utilizan como \textit{hipótesis financieras}, no como valores de mercado validados. Estas mediciones deberán incorporarse antes de utilizar la proyección para solicitar financiación o iniciar una operación comercial.
 
-\completar{Texto.}
+\section{Inversión inicial estimada}\label{sec:ml-inversion}
 
-\begin{table}[H]
-    \centering
-    \caption{Flujo de caja proyectado por escenario, en USD (ejemplo de estructura)}
-    \label{tab:flujo-caja}
-    \small
-    \begin{tabularx}{\textwidth}{l R R R R R R}
-        \toprule
-        \tb{Escenario} & \tb{Año 0} & \tb{Año 1} & \tb{Año 2} & \tb{Año 3} & \tb{Año 4} & \tb{Año 5} \\
-        \midrule
-        Pesimista & $-$\completar{...} & \completar{...} & \completar{...} & \completar{...} & \completar{...} & \completar{...} \\
-        Base      & $-$\completar{...} & \completar{...} & \completar{...} & \completar{...} & \completar{...} & \completar{...} \\
-        Optimista & $-$\completar{...} & \completar{...} & \completar{...} & \completar{...} & \completar{...} & \completar{...} \\
-        \bottomrule
-    \end{tabularx}
+\subsection{Esfuerzo de desarrollo}
+
+El principal componente de inversión corresponde al trabajo necesario para analizar, diseñar, implementar, integrar, probar y preparar el despliegue del MVP. Se utiliza una tarifa \textbf{hipotética de USD~25 por hora} aplicada a las actividades previstas. La tabla~\ref{tab:ml-inversion-desarrollo} reproduce la estimación por actividad del documento original.
+
+\begin{table}[htbp]
+\centering
+\caption{Estimación económica de las actividades de desarrollo}
+\label{tab:ml-inversion-desarrollo}
+\small
+\begin{tabularx}{\textwidth}{@{}X r r@{}}
+\toprule
+\textbf{Actividad} & \textbf{Horas} & \textbf{Costo (USD)} \\
+\midrule
+Análisis de requisitos y diseño & 60 & 1\,500 \\
+Diseño de arquitectura y base de datos & 40 & 1\,000 \\
+Backend y API REST & 140 & 3\,500 \\
+Frontend y dashboard & 120 & 3\,000 \\
+Extensión de navegador & 80 & 2\,000 \\
+Mecanismo de evaluación de riesgo & 100 & 2\,500 \\
+Integración con API y fuentes externas & 60 & 1\,500 \\
+Seguridad y autenticación & 40 & 1\,000 \\
+Pruebas y validación & 80 & 2\,000 \\
+Configuración y despliegue & 40 & 1\,000 \\
+\midrule
+\textbf{Total estimado} & \textbf{760} & \textbf{19\,000} \\
+\bottomrule
+\end{tabularx}
 \end{table}
 
-\begin{ejemplo}[Ejemplo: construcción de la tasa de descuento]
-La tasa de descuento \gls{sym:r} se construye sumando una tasa libre de
-riesgo (bono del Tesoro de EE.\,UU.\ a 10 años), el riesgo país (índice
-EMBI) y una prima por riesgo de proyecto en etapa temprana. Cada
-componente se cita con su fuente y fecha de consulta.
-\end{ejemplo}
+Esta distribución representa \textbf{760 horas de esfuerzo valoradas a USD~25/h}, equivalentes a \textbf{USD~19\,000}. Es un presupuesto económico para producir la solución y no un registro de gastos efectivamente abonados por el estudiante.
 
-El \gls{sym:van} se calcula como
+\subsection{Licencias, equipo y puesta en funcionamiento}
+
+El diseño prevé tecnologías con alternativas gratuitas o de código abierto, entre ellas Java, Spring Boot, React, PostgreSQL y Git. Para el alcance de desarrollo considerado, se estima \textbf{USD~0 de licencias comerciales iniciales}. No se presupone compra de computadoras, ya que el equipo de desarrollo existente se considera disponible; esta decisión no significa que su uso carezca de costo de oportunidad.
+
+La contratación eventual de un dominio, un entorno productivo u otros servicios podría ocasionar gastos adicionales. La proyección base separa los gastos recurrentes de infraestructura de la inversión de desarrollo y, por simplicidad, considera en el año cero solamente los \textbf{USD~19\,000} anteriores. Los desembolsos únicos de lanzamiento que no hayan sido cuantificados son una limitación de esta estimación.
+
+\section{Costos operativos}\label{sec:ml-operativos}
+
+\subsection{Infraestructura y servicios externos}
+
+La plataforma requeriría un frontend, servicios de backend, una instancia de PostgreSQL, copias de respaldo y observabilidad básica. Los rangos de la tabla~\ref{tab:ml-infraestructura} corresponden a \textbf{presupuestos orientativos elaborados para el escenario inicial}; deberán contrastarse con cotizaciones de proveedores y con requisitos de capacidad antes de contratar los servicios.
+
+\begin{table}[htbp]
+\centering
+\caption{Costos orientativos de infraestructura para una operación inicial}
+\label{tab:ml-infraestructura}
+\small
+\begin{tabularx}{\textwidth}{@{}X r r@{}}
+\toprule
+\textbf{Concepto} & \textbf{Mensual (USD)} & \textbf{Anual (USD)} \\
+\midrule
+Alojamiento del frontend & 0--10 & 0--120 \\
+Servidor backend / API & 10--25 & 120--300 \\
+Base de datos PostgreSQL & 10--25 & 120--300 \\
+Almacenamiento y respaldos & 5--10 & 60--120 \\
+Dominio & No aplica & 10--25 \\
+Monitoreo y auxiliares & 0--10 & 0--120 \\
+\midrule
+\textbf{Total orientativo} & --- & \textbf{310--985} \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+Las integraciones con servicios externos dependen de permisos, condiciones de uso y volúmenes de consulta. No se asigna un costo fijo a API de terceros porque no se cuenta todavía con una selección contractual y una utilización medidas. Un servicio de pago futuro deberá presupuestarse como costo adicional, eventualmente variable.
+
+\subsection{Mantenimiento y operación}
+
+Para el mantenimiento se suponen 20 horas mensuales a la misma tarifa de referencia de USD~25 por hora. Se obtiene:
+
 \begin{equation}
-    \mathit{VAN} = -I_0 + \sum_{t=1}^{n} \frac{\gls{sym:fc}}{(1 + r)^{t}},
-    \label{eq:van}
+C_{\mathrm{mant}} = 20\ \frac{\mathrm{h}}{\mathrm{mes}} \times 25\ \frac{\mathrm{USD}}{\mathrm{h}} \times 12\ \frac{\mathrm{mes}}{\mathrm{a\tilde{n}o}} = 6\,000\ \frac{\mathrm{USD}}{\mathrm{a\tilde{n}o}}.
+\label{eq:ml-mantenimiento}
 \end{equation}
-donde $I_0$ es la inversión inicial, $FC_t$ el flujo de caja neto del
-año $t$ y $r$ la tasa de descuento. La \gls{tir} es la tasa que anula el
-\gls{van}, y el período de repago es el primer año en que el flujo
-acumulado se vuelve positivo.
 
-\begin{table}[H]
-    \centering
-    \caption{Indicadores financieros por escenario (ejemplo de estructura)}
-    \label{tab:indicadores-financieros}
-    \small
-    \begin{tabular}{l r r r}
-        \toprule
-        \tb{Escenario} & \tb{VAN (USD)} & \tb{TIR} & \tb{Repago} \\
-        \midrule
-        Pesimista & \completar{...} & \completar{...\,\%} & \completar{n} años \\
-        Base      & \completar{...} & \completar{...\,\%} & \completar{n} años \\
-        Optimista & \completar{...} & \completar{...\,\%} & \completar{n} años \\
-        \bottomrule
-    \end{tabular}
+El trabajo comprende correcciones, seguridad, actualización de dependencias, adaptación a cambios en marketplaces y revisión de reglas de riesgo. Si es efectuado por los responsables del proyecto sin contratación, representa un costo económico imputado y no necesariamente una salida de efectivo.
+
+\begin{table}[htbp]
+\centering
+\caption{Síntesis del costo operativo anual estimado}
+\label{tab:ml-operacion-anual}
+\small
+\begin{tabularx}{\textwidth}{@{}X r@{}}
+\toprule
+\textbf{Categoría} & \textbf{Monto anual (USD)} \\
+\midrule
+Infraestructura & 310--985 \\
+Mantenimiento & 6\,000 \\
+Licenciamiento inicial considerado & 0 \\
+Servicios externos de pago & Variable; no cuantificado \\
+\midrule
+\textbf{Rango sin servicios variables} & \textbf{6\,310--6\,985} \\
+\textbf{Valor de trabajo para las proyecciones} & \textbf{6\,650} \\
+\bottomrule
+\end{tabularx}
 \end{table}
+
+El valor de \textbf{USD~6\,650 por año} constituye un punto de referencia dentro del intervalo estimado, no una factura ni una oferta comercial. El flujo de fondos incorpora aumentos de costos a partir del segundo año, aunque los importes tampoco derivan de consumos de producción ya observados.
+
+\section{Modelo de negocio y fuentes potenciales de ingresos}\label{sec:ml-modelo-negocio}
+
+\subsection{Estrategia freemium para usuarios individuales}
+
+Se propone un modelo \textit{freemium} B2C: las funciones preventivas esenciales permanecerían accesibles en un nivel gratuito, mientras que una suscripción premium ofrecería mayores límites de análisis, historial, alertas y otras capacidades avanzadas. Estas funcionalidades comerciales \textbf{son previstas}, no suscripciones ya vendidas ni características necesariamente operativas en el MVP actual.
+
+Como hipótesis de monetización se adopta un precio de \textbf{USD~5 mensuales}, equivalente a USD~60 por suscriptor activo durante doce meses. No se dispone aún de encuestas que acrediten la aceptación de ese precio; tampoco se deducen comisiones de medios de pago, impuestos ni abandono de suscriptores en los cálculos simplificados.
+
+\subsection{Posibles servicios para organizaciones}
+
+De manera complementaria se consideran planes B2B con paneles analíticos, informes agregados y acceso mediante API para integrar evaluaciones en otros productos. Estos servicios podrían diversificar ingresos, aunque su viabilidad dependería de acuerdos comerciales, calidad de datos, privacidad y términos de uso de los marketplaces. \textbf{No se incluyen ingresos B2B} en el cálculo financiero base.
+
+\subsection{Punto de equilibrio operativo}
+
+Con el costo anual de trabajo y el precio supuesto, la cantidad mínima de suscriptores de pago necesaria para compensar los costos operativos estimados es:
+
+\begin{equation}
+N_{\mathrm{equilibrio}} = \left\lceil\frac{6\,650}{5\times12}\right\rceil = 111\ \text{suscriptores premium}.\label{eq:ml-equilibrio}
+\end{equation}
+
+Se presupone que los 111 suscriptores abonan durante todo el año y que cada uno aporta USD~60 de ingresos brutos. El cálculo \textbf{no recupera la inversión inicial} ni incorpora impuestos, comisiones, bajas de suscripción o aumentos de capacidad.
+
+\section{Escenarios comerciales y flujos proyectados}\label{sec:ml-escenarios}
+
+\subsection{Comparación estática de escenarios de adopción}
+
+El documento original presenta tres niveles alternativos de suscriptores que permiten observar, en forma estática, la sensibilidad del resultado operativo anual a la adopción. En esta comparación se mantiene constante el costo operativo inicial de USD~6\,650 para aislar el efecto de la cantidad de suscriptores.
+
+\begin{table}[htbp]
+\centering
+\caption{Escenarios anuales estáticos de suscripciones (estimación propia)}
+\label{tab:ml-escenarios-estaticos}
+\small
+\begin{tabularx}{\textwidth}{@{}X r r r r@{}}
+\toprule
+\textbf{Escenario} & \textbf{Usuarios} & \textbf{Ingresos} & \textbf{Costos} & \textbf{Neto} \\
+\midrule
+Conservador & 75 & 4\,500 & 6\,650 & -2\,150 \\
+Base estático & 250 & 15\,000 & 6\,650 & 8\,350 \\
+Favorable & 500 & 30\,000 & 6\,650 & 23\,350 \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\noindent\textit{Nota:} montos anuales en USD. Esta tabla es una comparación de un año hipotético, \textbf{no representa los años 1 a 5 de la proyección dinámica} que se desarrolla a continuación.
+
+\subsection{Proyección base a cinco años}
+
+La proyección original considera una inversión inicial de USD~19\,000 en el año cero, una suscripción de USD~5 mensuales y un crecimiento hipotético desde 150 usuarios premium en el primer año hasta 550 en el quinto. Los costos aumentan gradualmente para representar una mayor necesidad de operación.
+
+\begin{table}[htbp]
+\centering
+\caption{Flujo de fondos proyectado del escenario base, en USD}
+\label{tab:ml-flujo-base}
+\small
+\begin{tabular}{@{}r r r r r@{}}
+\toprule
+\textbf{Año} & \textbf{Usuarios} & \textbf{Ingresos} & \textbf{Costos} & \textbf{Flujo neto} \\
+\midrule
+0 & --- & 0 & 19\,000 & -19\,000 \\
+1 & 150 & 9\,000 & 6\,650 & 2\,350 \\
+2 & 250 & 15\,000 & 7\,000 & 8\,000 \\
+3 & 350 & 21\,000 & 7\,500 & 13\,500 \\
+4 & 450 & 27\,000 & 8\,000 & 19\,000 \\
+5 & 550 & 33\,000 & 8\,500 & 24\,500 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+La suma de los flujos operativos positivos de los años 1 a 5 es USD~67\,350; al descontar la inversión del año cero, el saldo acumulado \textbf{no actualizado} alcanza USD~48\,350. Se trata de una proyección antes de impuestos y otros gastos omitidos, no de una ganancia comercial observada.
+
+\subsection{Sensibilidad plurianual: tres escenarios}\label{subsec:ml-sensibilidad-plurianual}
+
+Para proporcionar la comparación plurianual requerida por la plantilla, se desarrolla un \textbf{ejercicio adicional de sensibilidad}, distinto de la tabla estática anterior: el escenario conservador supone \textbf{la mitad de los suscriptores del caso base} en cada año y el favorable supone \textbf{un 50\,\% más}. El precio permanece en USD~5 mensuales y se conservan, por hipótesis simplificadora, los mismos costos anuales proyectados para el caso base. Los flujos conservador y favorable \textbf{son escenarios construidos para analizar sensibilidad}; no estaban medidos ni corresponden a pronósticos independientes de demanda.
+
+\begin{table}[htbp]
+\centering
+\caption{Flujos de caja proyectados por escenario, USD (año cero incluido)}
+\label{tab:ml-flujo-escenarios}
+\scriptsize
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{@{}lrrrrrr@{}}
+\toprule
+\textbf{Escenario} & \textbf{Año 0} & \textbf{Año 1} & \textbf{Año 2} & \textbf{Año 3} & \textbf{Año 4} & \textbf{Año 5} \\
+\midrule
+Conservador & -19\,000 & -2\,150 & 500 & 3\,000 & 5\,500 & 8\,000 \\
+Base & -19\,000 & 2\,350 & 8\,000 & 13\,500 & 19\,000 & 24\,500 \\
+Favorable & -19\,000 & 6\,850 & 15\,500 & 24\,000 & 32\,500 & 41\,000 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+La hipótesis de \textbf{costos idénticos} para los tres escenarios puede resultar optimista si la adopción aumenta, pues una demanda más elevada podría exigir mayor infraestructura, soporte y moderación. Análogamente, el costo imputado de mantenimiento podría cambiar aun con menos suscriptores. Por ello, la tabla se interpreta como una \textit{prueba de sensibilidad aislada}, no como un presupuesto operativo validado para cada segmento.
+
+\section{Indicadores financieros y viabilidad}\label{sec:ml-indicadores-financieros}
+
+\subsection{Valor actual neto y tasa de descuento}
+
+El valor actual neto (VAN) permite contrastar el desembolso inicial con el valor presente de los flujos futuros:
+
+\begin{equation}
+\mathrm{VAN}(r)=-I_0+\sum_{t=1}^{5}\frac{FC_t}{(1+r)^t},\label{eq:ml-van}
+\end{equation}
+
+\noindent donde $I_0$ es la inversión inicial, $FC_t$ el flujo neto del año $t$ y $r$ la tasa de descuento anual. La evaluación original adopta \textbf{10\,\% anual en USD como tasa ilustrativa de oportunidad}, y analiza además 15\,\% y 20\,\% como sensibilidad. \textbf{No se afirma que el 10\,\% sea una tasa de mercado verificada}: falta construir una tasa específica del proyecto a partir de fuentes fechadas, estructura de financiamiento y prima por riesgo. En una evaluación para inversión real, la elección de $r$ deberá justificarse con esos componentes y comprobar la consistencia entre moneda, inflación y flujos.
+
+En el escenario base, el VAN al 10\,\% es de aproximadamente \textbf{USD~28\,081}. La tabla~\ref{tab:ml-van-sensibilidad} muestra el efecto de otras tasas de descuento.
+
+\begin{table}[htbp]
+\centering
+\caption{Sensibilidad del VAN del escenario base a la tasa de descuento}
+\label{tab:ml-van-sensibilidad}
+\small
+\begin{tabular}{@{}rr@{}}
+\toprule
+\textbf{Tasa anual} & \textbf{VAN aproximado (USD)} \\
+\midrule
+10\,\% & 28\,081 \\
+15\,\% & 21\,013 \\
+20\,\% & 15\,335 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Tasa interna de retorno y período de repago}
+
+La tasa interna de retorno (TIR) es el valor de $r$ que satisface $\mathrm{VAN}(r)=0$ para la secuencia proyectada de flujos. El \textbf{período simple de repago} es el tiempo necesario para que la suma no descontada de los flujos recupere la inversión inicial. Si se considera la recuperación uniforme dentro del año en el que se supera el saldo pendiente, el caso base obtiene:
+
+\begin{equation}
+T_{\mathrm{repago,base}}=2+\frac{8\,650}{13\,500}\approx 2{,}64\ \text{años}.\label{eq:ml-repago}
+\end{equation}
+
+La TIR y el repago calculados para las tres secuencias de la tabla~\ref{tab:ml-flujo-escenarios} son:
+
+\begin{table}[htbp]
+\centering
+\caption{Indicadores calculados para el ejercicio plurianual de sensibilidad}
+\label{tab:ml-indicadores-escenarios}
+\small
+\begin{tabularx}{\textwidth}{@{}X r r X@{}}
+\toprule
+\textbf{Escenario} & \textbf{VAN a 10\,\% (USD)} & \textbf{TIR} & \textbf{Repago simple} \\
+\midrule
+Conservador & -9\,563 & -5{,}13\,\% & No ocurre en 5 años \\
+Base & 28\,081 & 42{,}57\,\% & 2{,}64 años \\
+Favorable & 65\,724 & 76{,}38\,\% & 1{,}78 años \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\noindent\textit{Nota:} valores redondeados; los indicadores de los escenarios conservador y favorable se calculan a partir de \textbf{supuestos adicionales de sensibilidad} y no se derivan de ventas observadas. Una TIR elevada en una proyección no equivale a una rentabilidad garantizada. El repago presentado no descuenta flujos; por esa razón puede diferir de un repago descontado.
+
+El resultado conservador muestra que una adopción menor puede impedir recuperar el capital en cinco años. Los resultados favorables, por su parte, son muy sensibles a la hipótesis de costos constantes. Ambos extremos refuerzan que la \textbf{captación y retención de suscriptores} es una condición determinante de viabilidad.
+
+\section{Beneficios esperados}\label{sec:ml-beneficios}
+
+\subsection{Beneficios para compradores y usuarios}
+
+El beneficio central esperado es ofrecer información interpretable durante la evaluación previa a una compra. Un índice acompañado por los factores contribuyentes y por un indicador de cobertura puede ayudar a identificar elementos que merezcan revisión, sin presentar la puntuación como prueba de fraude ni reemplazar la decisión del comprador. La extensión de navegador apunta a reducir los pasos necesarios para consultar una publicación compatible.
+
+\subsection{Beneficios informativos y colaborativos}
+
+La consolidación de registros podría favorecer el análisis de indicadores agregados, como la distribución de factores de riesgo o la evolución de reportes recibidos. Este valor depende de que el sistema recopile suficientes datos de calidad y establezca procedimientos para controlar contribuciones duplicadas, falsas o no verificadas. La participación colaborativa no debe confundirse con una validación automática de denuncias.
+
+\subsection{Beneficios tecnológicos y de evolución}
+
+La arquitectura modular facilita incorporar nuevas fuentes y ajustar criterios de evaluación. Las pruebas funcionales del prototipo ofrecen experiencia en integración de frontend, backend, extensión y persistencia. En una etapa futura, un conjunto de casos representativo y etiquetado podría permitir evaluar técnicas adicionales y medir la eficacia de detección; esa evaluación no forma parte de los resultados comerciales ni estadísticos actuales.
+
+\subsection{Beneficios económicos potenciales}
+
+Un acceso básico gratuito junto con prestaciones premium podría permitir financiar operación y mantenimiento sin cobrar por toda la asistencia preventiva. Eventuales servicios B2B diversificarían ingresos, pero requieren validación de demanda. No puede calcularse todavía un ahorro promedio de pérdidas por fraude para compradores, pues faltan estudios de eficacia y seguimiento de resultados reales.
+
+\section{Factibilidad complementaria y restricciones}\label{sec:ml-factibilidad-complementaria}
+
+\subsection{Factibilidad institucional y ambiental}
+
+El desarrollo puede realizarse con herramientas ampliamente disponibles y hardware convencional, sin necesidad de maquinaria ni infraestructura física propia. El uso de una infraestructura dimensionada a la demanda y la definición de políticas de retención de datos podrían moderar consumo de almacenamiento y cómputo, aunque no se han efectuado mediciones ambientales del servicio desplegado.
+
+\subsection{Consideraciones legales y de uso responsable}
+
+Una implementación real deberá considerar la Ley argentina 25.326 de Protección de los Datos Personales y su reglamentación, el Código Civil y Comercial de la Nación y las condiciones de acceso y reutilización de datos establecidas por los marketplaces \citep{ml-ley25326,ml-decreto1558,ml-ley26994,ml-meli-terminos}. El diseño no justifica publicar datos personales innecesarios ni calificar a un vendedor como autor de fraude sin evidencia suficiente. Los reportes colaborativos deberán contar con controles contra contenidos abusivos y mecanismos de revisión.
+
+\subsection{Limitaciones de los supuestos financieros}\label{subsec:ml-supuestos}
+
+Los cálculos se basan en presupuestos de esfuerzo y tarifas \textbf{propios y no cotizados}, un precio de suscripción no validado y usuarios premium supuestos. La operación comercial futura exigirá incluir, como mínimo, comisiones de cobro, impuestos, adquisición y soporte de clientes, bajas de suscripción, eventuales licencias, honorarios legales, servicios externos de pago, costos de crecimiento y gastos de lanzamiento. Además, los ingresos B2B se mantienen fuera del escenario base.
+
+El acceso limitado a datos de terceros puede incrementar el mantenimiento y restringir la propuesta de valor. La ausencia de evidencia estadística sobre precisión de detección de fraude puede afectar la confianza y la disposición a pagar; por tanto, \textbf{viabilidad técnica y viabilidad comercial no son equivalentes}. Antes de utilizar estos números para una decisión de inversión, sería necesario realizar entrevistas o encuestas, revisar ofertas de proveedores, obtener presupuestos fechados y construir una tasa de descuento defendible.
+
+\section{Conclusión de factibilidad económica}\label{sec:ml-conclusion-economica}
+
+El presupuesto preliminar de MarketLens estima \textbf{USD~19\,000 de inversión económica inicial} y un costo operativo anual base próximo a \textbf{USD~6\,650}. En un esquema simplificado de USD~5 mensuales, se requerirían aproximadamente \textbf{111 suscriptores premium sostenidos durante un año} para cubrir el costo operativo estimado, sin recuperar todavía el desarrollo.
+
+La secuencia base del documento original proyecta un repago simple de \textbf{2,64 años} y un VAN aproximado de \textbf{USD~28\,081} a una tasa de descuento \textbf{hipotética} del 10\,\%. El análisis plurianual adicional muestra que, bajo una adopción equivalente a la mitad del escenario base y costos constantes, la inversión no se recupera dentro del horizonte considerado. Por tanto, la rentabilidad potencial es \textbf{condicional a la adopción, la permanencia de usuarios pagos y el control de costos}, y no puede considerarse demostrada en la etapa actual del prototipo.
+
+El siguiente paso económico debe concentrarse en validar el precio propuesto, la disposición a pagar, las condiciones de infraestructura y los costos de adquisición de usuarios, en paralelo con la validación funcional y de utilidad del producto descrita en los capítulos~\ref{cap:metodologia} y~\ref{cap:resultados}.

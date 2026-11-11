@@ -1,44 +1,73 @@
 %!TEX root = ../main.tex
-% GLOSARIO: términos que necesitan definición dentro del documento.
-%
-% Definir:   \newglossaryentry{clave}{name={Término}, description={Definición}}
-% Usar:      \gls{clave}      -> Término (con enlace al glosario)
-%            \Gls{clave}      -> Término (con mayúscula inicial)
-%            \glspl{clave}    -> plural
-% Solo aparecen en el glosario los términos que se usan en el texto.
-% Las siglas van en siglas.tex y los símbolos en simbolos.tex.
+% GLOSARIO — términos conceptuales relevantes de MarketLens.
+% Definición ≠ aparición automática: usar \gls{clave} o \glsadd{clave}.
 
-\newglossaryentry{g:mvp}{
-    name={producto mínimo viable},
-    description={Versión funcional de un producto con el conjunto mínimo
-    de características que entrega valor real a los usuarios y permite
-    aprender de su uso. A diferencia de un prototipo, no simula: funciona}
+\newglossaryentry{marketplace}{
+    name={marketplace},
+    description={Plataforma digital que facilita la publicación y el intercambio de bienes o servicios entre compradores y vendedores}
 }
 
 \newglossaryentry{prototipo}{
     name={prototipo},
-    description={Versión preliminar de un sistema construida para validar
-    una idea, un flujo o una interfaz. Puede simular partes del
-    comportamiento y no está pensada para operar en producción}
+    description={Versión funcional o experimental de un sistema utilizada para comprobar decisiones de diseño y comportamiento en un alcance delimitado; no presupone aptitud para producción}
+}
+
+\newglossaryentry{g:mvp}{
+    name={producto mínimo viable},
+    description={Versión de un producto que reúne las funciones mínimas necesarias para ofrecer una propuesta de valor y aprender de su utilización real}
 }
 
 \newglossaryentry{stakeholder}{
     name={parte interesada},
-    description={Persona, grupo u organización que puede afectar o verse
-    afectada por el proyecto: usuarios, clientes, patrocinadores,
-    reguladores y el propio equipo}
+    description={Persona, grupo u organización que puede afectar al proyecto o verse afectada por sus resultados o decisiones}
+}
+
+\newglossaryentry{indicador-riesgo}{
+    name={indicador de riesgo},
+    description={Atributo observable o derivado que se utiliza como señal para estimar la necesidad de revisar una publicación; por sí solo no constituye prueba de fraude}
+}
+
+\newglossaryentry{indice-riesgo}{
+    name={índice de riesgo},
+    description={Puntuación calculada por MarketLens mediante reglas y ponderaciones; representa una evaluación orientativa de factores presentes, no una probabilidad estadística de fraude}
+}
+
+\newglossaryentry{cobertura-informacion}{
+    name={cobertura de información},
+    description={Proporción o recuento de grupos de datos para los que se dispone de información suficiente durante una evaluación; permite distinguir evidencia ausente de señales negativas observadas}
+}
+
+\newglossaryentry{referencia-provisional}{
+    name={referencia provisional de precio},
+    description={Publicación candidata que supera determinados filtros de comparabilidad, sin garantizar equivalencia comercial perfecta ni suficiencia estadística para estimar precios de mercado}
+}
+
+\newglossaryentry{normalizacion}{
+    name={normalización de productos},
+    description={Tratamiento de títulos y atributos para reducir variaciones de escritura y facilitar la comparación entre publicaciones potencialmente equivalentes}
+}
+
+\newglossaryentry{similitud-coseno}{
+    name={similitud coseno},
+    description={Medida de similitud entre representaciones vectoriales que considera el coseno del ángulo formado por los vectores; utilizada para comparar títulos de publicaciones}
+}
+
+\newglossaryentry{falso-positivo}{
+    name={falso positivo},
+    description={Caso legítimo clasificado incorrectamente como sospechoso o riesgoso por un mecanismo de evaluación}
+}
+
+\newglossaryentry{falso-negativo}{
+    name={falso negativo},
+    description={Caso problemático que un mecanismo de evaluación no identifica como riesgoso}
 }
 
 \newglossaryentry{exposicion}{
     name={exposición al riesgo},
-    description={Producto de la probabilidad de ocurrencia de un riesgo por
-    su impacto. Se usa para ordenar la matriz de riesgos y decidir cuáles
-    se tratan primero}
+    description={Producto de una valoración ordinal de probabilidad por una valoración ordinal de impacto; sirve para priorizar la gestión de riesgos del proyecto, sin representar una probabilidad medida}
 }
 
 \newglossaryentry{g:van}{
     name={valor actual neto},
-    description={Suma de los flujos de caja futuros de un proyecto
-    descontados a una tasa que refleja su riesgo, menos la inversión
-    inicial. Un valor positivo indica que el proyecto crea valor}
+    description={Diferencia entre el valor presente de los flujos de caja proyectados y la inversión inicial, obtenida mediante una tasa de descuento asumida; su interpretación depende de la validez de los supuestos}
 }

@@ -1,59 +1,209 @@
 %!TEX root = ../main.tex
 % =============================================================
-%  CAPÍTULO 3 — MARCO TEÓRICO Y ESTADO DEL ARTE
-%                                       (Entrega 3 · 10 % · 28/7)
+% CAPÍTULO 3 — SÍNTESIS DE LA LITERATURA CONSULTADA · MARKETLENS
+% Basado en el marco teórico redactado para MarketLens, ampliado
+% con antecedentes primarios contrastados y bibliografía verificable.
+% Las referencias ml-resnick-2006, ml-tadelis-2016 y ml-phua-2010
+% ya se incorporaron junto con el capítulo 1. No duplicarlas.
 % =============================================================
 
 \chapter{Síntesis de la literatura consultada}\label{cap:marco-teorico}
 
-\begin{guia}[Guía de la cátedra: qué se evalúa en este capítulo]
-\begin{enumerate}
-    \item \textbf{Estado del arte}: investigaciones nacionales,
-          internacionales y productos similares, por separado. De cada
-          trabajo: qué hizo y qué resultados obtuvo, con métricas.
-    \item \textbf{Brechas identificadas}: qué falta en lo existente y
-          justifica \emph{este} proyecto. Es lo que separa un estado del
-          arte de un listado. Incluir también los resultados negativos de
-          la literatura.
-    \item \textbf{Bases teóricas}: desarrollan las variables del título y su
-          relación. Cada concepto termina explicando cómo se usa en el
-          proyecto (teoría instrumental, no de relleno). Citas canónicas
-          antes que tutoriales.
-    \item \textbf{Marco conceptual}: conceptos que se nombran pero no se
-          desarrollan. Los términos del glosario se marcan con
-          \verb|\gls{}|, por ejemplo \gls{g:mvp} y \gls{prototipo}.
-    \item \textbf{Calidad bibliográfica}: papers, tesis y libros de
-          editoriales serias, con datos completos. Wikipedia y blogs restan.
-    \item \textbf{Entrevistas a especialistas} (si las hay): fecha, nombre,
-          cargo y aporte; transcripción en el apéndice~\ref{apx:entrevista}.
-\end{enumerate}
-Errores que la cátedra marca: falta de coherencia interna, bibliografía
-superficial, información irrelevante o redundante. Es uno de los
-capítulos más extensos (orientativo: 20 a 30 páginas).
-\end{guia}
+La construcción de un sistema que ayude a evaluar el riesgo en plataformas de compraventa digital exige relacionar aportes de distintas áreas: comercio electrónico, confianza entre participantes, reputación, prevención del fraude, recuperación de información y desarrollo de plataformas colaborativas. La presente revisión establece las bases conceptuales de MarketLens y examina antecedentes que permiten fundamentar sus decisiones de diseño sin trasladar automáticamente resultados obtenidos en otros contextos.
 
-\completar{Desarrollo del capítulo.}
+La exposición se organiza en tres niveles. Primero se presentan antecedentes nacionales, investigaciones internacionales y soluciones existentes; después se desarrollan las bases teóricas que intervienen directamente en el análisis de publicaciones y vendedores; finalmente se sintetizan las brechas observadas y su relación con los componentes del proyecto. Se distingue entre \textbf{resultados documentados por las fuentes} y \textbf{decisiones propuestas para MarketLens}, ya que la existencia de literatura sobre fraude no acredita por sí sola la eficacia preventiva del prototipo.
 
-\section{\completar{Nombre de la sección}}
+\section{Estado del arte}\label{sec:ml-estado-arte}
 
-\completar{Texto.}
+\subsection{Antecedentes nacionales: modalidades reportadas en Argentina}\label{subsec:ml-antecedentes-nacionales}
 
-\begin{table}[H]
+Un antecedente institucional relevante es el informe \emph{Casos y modalidades reportadas a UFECI: Informe 2024}, elaborado por la Unidad Fiscal Especializada en Ciberdelincuencia del Ministerio Público Fiscal de la Nación \parencite{ml-ufeci-2025}. El documento analiza los reportes recibidos por dicha unidad durante 2024, los organiza por modalidad y examina tendencias respecto de años anteriores.
+
+La UFECI registró \textbf{34.468 reportes de delitos informáticos} durante 2024, frente a 28.456 en 2023, lo que representa un aumento interanual del 21,1\,\%. Entre los registros de 2024, \textbf{21.729 se clasificaron como fraude en línea}, equivalentes al 63\,\% del total. Dentro de esta categoría, el informe atribuye el 56\,\% a maniobras vinculadas con la compraventa de bienes o servicios por Internet; el propio documento consigna 12.004 reportes en este subconjunto \parencite{ml-ufeci-2025}.
+
+Estos datos aportan evidencia de que las operaciones de compraventa digital forman parte relevante de las situaciones comunicadas a una unidad especializada en Argentina. No obstante, el informe reúne \textbf{reportes recibidos}, no una muestra representativa de todas las transacciones ni una medición exhaustiva de delitos efectivamente comprobados. Tampoco permite concluir qué proporción de las publicaciones de un marketplace es fraudulenta o qué porcentaje de esos casos podría identificar MarketLens.
+
+Desde la perspectiva del proyecto, el aporte del antecedente nacional es doble. Primero, justifica estudiar las señales visibles en escenarios de compraventa digital, incluidos los que involucran redes sociales, plataformas de mensajería y marketplaces. Segundo, demuestra la utilidad de clasificar sistemáticamente reportes y modalidades; esta práctica constituye una referencia conceptual para la eventual construcción de estadísticas agregadas y registros colaborativos. El informe de la UFECI, sin embargo, \textbf{no es una evaluación comparativa de algoritmos de detección de fraude} ni proporciona métricas de precisión que puedan atribuirse al motor de MarketLens.
+
+\subsection{Investigaciones internacionales sobre confianza y reputación}\label{subsec:ml-reputacion-investigaciones}
+
+\textcite{ml-resnick-2006} desarrollaron un experimento de campo controlado sobre el valor de la reputación en eBay. Un vendedor establecido ofreció lotes equivalentes de postales antiguas utilizando su identidad habitual y otras identidades nuevas. Los compradores mostraron una mayor disposición a pagar por el vendedor reconocido, con una diferencia equivalente al \textbf{8,1\,\% del precio de venta}. Un experimento complementario encontró que una o dos valoraciones negativas en vendedores relativamente nuevos no alteraron del mismo modo la disposición a pagar.
+
+El trabajo proporciona una evidencia cuantitativa concreta de que la reputación puede modificar las decisiones de compra. Al mismo tiempo, sus resultados se refieren a un conjunto específico de productos, participantes y condiciones experimentales. No demuestran que una reputación elevada descarte el fraude, que una cuenta nueva resulte sospechosa por definición, ni que el porcentaje identificado pueda extrapolarse directamente a otros mercados.
+
+\textcite{ml-tadelis-2016} revisa la literatura sobre sistemas de reputación y retroalimentación en mercados de plataformas. El análisis destaca su función para reducir la incertidumbre entre compradores y vendedores, pero también aborda problemas de sesgo en las calificaciones y limitaciones asociadas a la información que efectivamente se publica. Al tratarse de una revisión, su contribución principal es conceptual y comparativa, no una tasa única de detección aplicable a cualquier marketplace.
+
+En conjunto, ambos antecedentes permiten sostener que la reputación es \textbf{una señal relevante, pero incompleta}. MarketLens recupera esta idea al considerar atributos observables del vendedor junto con otros indicadores, evitando interpretar automáticamente la falta de reputación visible como prueba de un comportamiento fraudulento. Asimismo, distingue entre \emph{historial limitado conocido} y \emph{ausencia de datos confiables}, situaciones que no deberían tratarse como equivalentes.
+
+\subsection{Investigaciones internacionales sobre detección de fraude y manipulación}\label{subsec:ml-fraude-investigaciones}
+
+\textcite{ml-phua-2010} presenta una revisión amplia de técnicas de minería de datos empleadas en distintos ámbitos de detección de fraude. El trabajo organiza enfoques supervisados y no supervisados, examina la utilización de datos de comportamiento y discute obstáculos frecuentes, como la escasez de ejemplos etiquetados y la evolución de las modalidades fraudulentas. No ofrece un único resultado experimental transferible a MarketLens, ya que su propósito es comparar técnicas y contextos heterogéneos.
+
+Por su parte, \textcite{ml-bhattacharyya-2011} compara modelos de regresión logística, máquinas de vectores de soporte y bosques aleatorios sobre datos reales de transacciones con tarjeta de crédito. Su contribución es metodológica: muestra cómo diferentes enfoques pueden evaluarse sobre datos operativos y cómo la elección de métricas y conjuntos de validación forma parte esencial del problema. \textbf{No se trata de un estudio sobre vendedores de marketplaces}, por lo que sus resultados no pueden utilizarse como evidencia directa de eficacia para las publicaciones analizadas por MarketLens.
+
+Otra dimensión del problema es la confiabilidad de la información social. \textcite{ml-hu-2011} estudian la manipulación de reseñas de consumidores utilizando datos de Amazon y Barnes \& Noble. El trabajo documenta la existencia de manipulación y analiza relaciones entre las reseñas, la calidad observada y los incentivos de los participantes. Este antecedente resulta relevante para un eventual sistema colaborativo de reportes: las contribuciones de usuarios pueden aumentar la cobertura informativa, pero también requerir controles frente a sesgos o intervenciones interesadas.
+
+La literatura internacional coincide, por caminos diferentes, en una precaución fundamental: el rendimiento de una técnica depende de la naturaleza de los datos y del proceso de evaluación. En el caso de MarketLens, las pruebas actuales permiten verificar reglas, cálculos e integraciones, pero no permiten obtener sensibilidad, especificidad o precisión de detección de fraude sin un conjunto de referencia independiente que distinga casos legítimos y fraudulentos.
+
+\subsection{Comparación de los antecedentes relevados}\label{subsec:ml-comparativa-antecedentes}
+
+La tabla~\ref{tab:ml-antecedentes-comparados} resume las contribuciones que pueden utilizarse como fundamento del proyecto y explicita los límites de su transferencia. Se consigna un resultado cuantitativo únicamente cuando la fuente lo informa y dicho resultado es pertinente para describir el estudio, no para atribuirlo a MarketLens.
+
+\begin{table}[htbp]
     \centering
-    \caption{Comparación de trabajos relevados (ejemplo de estructura)}
-    \label{tab:comparativa}
-    \small
-    \begin{tabularx}{\textwidth}{L L L L L}
+    \caption{Antecedentes examinados y alcance de sus resultados}
+    \label{tab:ml-antecedentes-comparados}
+    \footnotesize
+    \begin{tabularx}{\textwidth}{@{}p{0.22\textwidth}X X@{}}
         \toprule
-        \tb{Trabajo} & \tb{Enfoque} & \tb{Datos} & \tb{Resultado} & \tb{Limitación} \\
+        \textbf{Antecedente} & \textbf{Aporte o resultado documentado} & \textbf{Límite para MarketLens} \\
         \midrule
-        \citet{breiman2001} & Ensamble de árboles & Benchmarks UCI & Menor error que árboles individuales & No aborda series temporales \\
-        \citet{chen2016} & Boosting escalable & Kaggle, Higgs & Mejor precisión y velocidad que alternativas & Requiere ajuste de hiperparámetros \\
-        \completar{...} & & & & \\
+        UFECI (2025) & 34.468 reportes en 2024; 21.729 de fraude en línea; 56\,\% de estos vinculados a compraventa por Internet. & Reportes recibidos, no prevalencia de fraude ni evaluación algorítmica. \\
+        \addlinespace[2pt]
+        Resnick et al. (2006) & Experimento en eBay: diferencia de disposición a pagar de 8,1\,\% a favor de una identidad con reputación establecida. & Productos y condiciones experimentales particulares; no identifica fraudes. \\
+        \addlinespace[2pt]
+        Tadelis (2016) & Revisión sobre confianza, sistemas de reputación y sesgos de retroalimentación. & No proporciona una tasa universal de precisión del riesgo. \\
+        \addlinespace[2pt]
+        Phua et al. (2010) & Encuesta académica de métodos de detección de fraude y sus dificultades. & Técnicas y dominios heterogéneos; sin resultado único trasladable. \\
+        \addlinespace[2pt]
+        Bhattacharyya et al. (2011) & Comparación de métodos de clasificación con transacciones de tarjetas de crédito. & Dominio transaccional distinto del análisis de publicaciones. \\
+        \addlinespace[2pt]
+        Hu et al. (2011) & Evidencia de manipulación de reseñas en dos plataformas de comercio digital. & Trata reseñas, no el cálculo general de riesgo de una publicación. \\
         \bottomrule
     \end{tabularx}
 \end{table}
 
-\subsection{\completar{Nombre de la subsección}}
+\subsection{Soluciones existentes y productos relacionados}\label{subsec:ml-soluciones-existentes}
 
-\completar{Texto.}
+Los marketplaces incorporan mecanismos propios de información y protección. Mercado Libre, por ejemplo, publica criterios de reputación relacionados con el desempeño comercial del vendedor, como reclamos, cancelaciones y aspectos de cumplimiento de los envíos; su documentación señala además condiciones y períodos de observación específicos \parencite{ml-meli-reputacion}. Estas mediciones son útiles dentro del ecosistema donde se generan, pero no equivalen a un índice independiente que combine precios, información disponible y distintas fuentes externas.
+
+En eBay, las calificaciones y comentarios de los participantes forman parte del contexto en el que se estudiaron los efectos económicos de la reputación \parencite{ml-resnick-2006,ml-tadelis-2016}. La función de estos mecanismos es favorecer la confianza en la interacción; el hecho de que existan no significa que deban considerarse una certificación concluyente de legitimidad.
+
+También existen herramientas de consulta de reputación de sitios y dominios, como ScamAdviser, mencionada en el relevamiento inicial del proyecto. Su unidad de análisis es diferente de la de MarketLens: evaluar señales relativas a un dominio web no equivale a analizar los atributos concretos de una publicación y de su vendedor. La comparación se plantea por \textbf{tipo de funcionalidad}, sin asignar cifras de desempeño o cobertura que no fueron medidas en esta investigación.
+
+A partir de estos antecedentes, MarketLens se plantea como una herramienta \emph{complementaria}, no sustitutiva. La diferenciación propuesta consiste en reunir indicadores observables de publicaciones, referencias de precios y vendedores, exponer las razones del resultado, registrar el grado de cobertura y, en etapas posteriores, integrar reportes colaborativos. No se afirma que ninguna otra solución ofrezca funciones semejantes en cualquier país o que se haya realizado un relevamiento exhaustivo de todos los productos disponibles.
+
+\section{Bases teóricas aplicadas a MarketLens}\label{sec:ml-bases-teoricas}
+
+\subsection{Comercio electrónico, intermediación y asimetría de información}\label{subsec:ml-comercio-electronico}
+
+El comercio electrónico comprende intercambios comerciales mediados por tecnologías digitales y diferentes formas de interacción entre empresas, consumidores y plataformas \parencite{ml-laudon-traver-2024}. En los marketplaces de múltiples vendedores, la plataforma facilita el encuentro entre partes independientes y establece mecanismos de publicación, consulta, reputación o transacción según sus reglas.
+
+Este modelo genera un problema de \textbf{asimetría de información}: quien publica un producto puede conocer su estado real, procedencia y condiciones de venta mejor que el comprador. El usuario debe estimar confiabilidad utilizando información visible, y la plataforma procura reducir esa incertidumbre mediante señales de reputación y mecanismos de control \parencite{ml-tadelis-2016}.
+
+Para MarketLens, la consecuencia técnica es que los datos de una publicación deben examinarse como \textbf{indicios sujetos a interpretación}, no como hechos suficientes para declarar fraude. La puntuación de riesgo sirve para señalar aspectos que requieren atención, mientras que la clasificación cualitativa y las explicaciones ayudan a comprender cuáles fueron los datos utilizados.
+
+\subsection{Reputación, trayectoria comercial y ausencia de información}\label{subsec:ml-fundamento-reputacion}
+
+Los sistemas de reputación pueden sintetizar experiencias de transacciones anteriores mediante calificaciones o métricas de desempeño. Su utilidad depende, entre otros aspectos, del volumen de interacciones, del período observado y de los incentivos para emitir valoraciones \parencite{ml-resnick-2006,ml-tadelis-2016}. Una señal de reputación puede tener relevancia sin constituir una medida exacta de la probabilidad de incumplimiento futuro.
+
+Desde el punto de vista del análisis de datos, es necesario separar al menos tres situaciones: un vendedor con trayectoria amplia y observada; un vendedor con pocas operaciones \emph{confirmadas} en el período considerado; y un vendedor para el cual no se dispone de una observación válida. La tercera situación no equivale a tener cero ventas. Esta distinción evita que la falta de acceso a un atributo se transforme automáticamente en un puntaje desfavorable.
+
+El diseño de MarketLens incorpora esa precaución mediante registros de atributos observados, reglas que dependen de información verificable y un mecanismo de cobertura de factores. La explicación del riesgo puede señalar que una trayectoria es limitada cuando existe evidencia suficiente, pero no debería afirmar que un vendedor carece de ventas si el dato simplemente no fue recuperado.
+
+\subsection{Fraude, anomalías y clasificación basada en datos}\label{subsec:ml-fundamento-fraude}
+
+La detección de fraude mediante datos puede adoptar varias estrategias: reglas definidas por especialistas, búsqueda de valores atípicos, modelos predictivos supervisados o métodos no supervisados. \textcite{ml-phua-2010} destaca que la naturaleza dinámica del fraude y las dificultades de etiquetado condicionan la comparación de técnicas. \textcite{ml-han-2011} sistematizan conceptos de preparación de datos, similitud, clasificación y detección de valores anómalos utilizados en minería de datos.
+
+Una \emph{anomalía} es una observación que se aparta de un patrón de referencia bajo criterios definidos. Esa diferencia no constituye necesariamente un acto fraudulento. Por ejemplo, una oferta con precio muy inferior al de ciertos productos comparados puede deberse a diferencias de condición, capacidad, accesorios, urgencia de venta u otros atributos no observados.
+
+Por este motivo, el motor inicial de MarketLens utiliza \textbf{reglas interpretables y ponderaciones explícitas}, en lugar de presentar una etiqueta automática de fraude. La combinación de varios factores puede producir una advertencia, pero la conclusión debe seguir restringida por la calidad y suficiencia de los datos. Para convertir ese índice en una predicción validada serían necesarios casos etiquetados, criterios de verdad de referencia y métricas de error.
+
+\subsection{Recuperación de información y similitud de publicaciones}\label{subsec:ml-fundamento-similitud}
+
+La recuperación de publicaciones con atributos potencialmente semejantes puede abordarse mediante técnicas de representación textual. \textcite{ml-manning-2008} explican la utilización de esquemas de ponderación como \emph{Term Frequency--Inverse Document Frequency} (TF--IDF) y de la similitud coseno para recuperar documentos relacionados en un espacio vectorial.
+
+En términos generales, TF--IDF asigna mayor peso a los términos relevantes para un documento y menor peso a los que aparecen con mucha frecuencia en toda la colección. Una vez representados los títulos o descripciones como vectores, la similitud coseno permite comparar su orientación:
+
+\begin{equation}
+    \operatorname{sim}(A,B)=\frac{A\cdot B}{\lVert A\rVert\,\lVert B\rVert},
+    \label{eq:ml-coseno}
+\end{equation}
+
+siempre que los vectores tengan norma distinta de cero. Cuanto mayor sea el valor, mayor será la semejanza textual bajo la representación utilizada; ese resultado no certifica identidad de modelo ni equivalencia de precio.
+
+En los marketplaces, dos títulos pueden compartir expresiones como marca, familia o tipo de producto y, sin embargo, describir variantes comercialmente distintas. La capacidad de almacenamiento, el estado del bien, los accesorios y la composición de un paquete son ejemplos de atributos que pueden invalidar una comparación basada solo en palabras coincidentes.
+
+Por ese motivo, MarketLens utiliza la similitud textual como un \textbf{filtro inicial de candidatos} y contempla verificaciones adicionales de compatibilidad. Cuando las características necesarias no pueden determinarse, los candidatos pueden quedar clasificados como insuficientes o provisionales. Este procedimiento prioriza evitar una falsa sensación de precisión estadística.
+
+\subsection{Referencias de precios y estadística descriptiva}\label{subsec:ml-fundamento-precios}
+
+El análisis comparativo de precios necesita definir previamente qué ofertas pueden considerarse suficientemente equivalentes. Las técnicas descriptivas descritas por \textcite{ml-han-2011} permiten sintetizar una colección mediante medidas de tendencia central y dispersión, como la mediana, los cuartiles y el rango intercuartílico.
+
+La \textbf{mediana} indica el valor central de una distribución ordenada y puede ser menos sensible que la media ante valores extremos. Los cuartiles permiten describir posiciones de la distribución y el rango intercuartílico resume la separación entre el tercer y el primer cuartil. Sin embargo, ninguna medida compensa por sí sola una selección inadecuada de productos o una muestra demasiado pequeña y sesgada.
+
+En el caso de MarketLens, una diferencia de precio respecto de la mediana puede activar un indicador únicamente cuando las referencias alcanzan criterios mínimos de comparabilidad y suficiencia. Cuando no sucede, el sistema evita utilizar percentiles o asignar una penalización sustentada en una distribución que no ha podido construirse apropiadamente. Los procedimientos concretos se detallan en el capítulo~\ref{cap:metodologia}, y los casos documentados aparecen en el capítulo~\ref{cap:resultados}.
+
+Una diferencia inferior al precio de referencia es, por tanto, una \textbf{señal contextual de riesgo} y no una estimación de que la oferta sea falsa. Del mismo modo, la posición percentilar calculada sobre referencias seleccionadas automáticamente debe interpretarse como provisional cuando no existe verificación de equivalencia comercial ni representatividad de mercado.
+
+\subsection{Sistemas colaborativos y calidad de las contribuciones}\label{subsec:ml-fundamento-colaborativo}
+
+El enfoque colaborativo se basa en utilizar aportes de una comunidad para recopilar observaciones que una única fuente no podría obtener con igual amplitud. En el problema analizado, la participación de usuarios podría ampliar el registro de experiencias y reportes sobre publicaciones potencialmente sospechosas.
+
+No obstante, las contribuciones no son necesariamente independientes, exactas o desinteresadas. Los resultados de \textcite{ml-hu-2011} sobre manipulación de reseñas permiten advertir que una plataforma que utilice valoraciones o reportes debe diseñar procedimientos para evaluar su calidad y evitar atribuir a la cantidad de interacciones una validez automática.
+
+Por esa razón, MarketLens contempla los reportes colaborativos como una posible \textbf{fuente adicional de información}, no como evidencia concluyente. Su incorporación operativa requiere mecanismos de revisión, criterios de aceptación, medidas frente a duplicados y controles de abuso. El diseño de este módulo forma parte de la evolución prevista; su aporte no se considera validado por las pruebas actuales del motor de riesgo.
+
+\subsection{Interpretabilidad, cobertura y visualización}\label{subsec:ml-fundamento-interpretabilidad}
+
+Un sistema de apoyo a decisiones debe comunicar no solo un resultado, sino también qué información sustentó su obtención. En MarketLens se distingue el \textbf{índice de riesgo}, producido por reglas y ponderaciones, de la \textbf{cobertura de la evaluación}, que informa cuántos factores previstos contaron con datos utilizables.
+
+Esta separación es relevante porque una puntuación baja puede responder a pocos indicadores disponibles y no necesariamente a evidencia positiva de seguridad. De manera análoga, un indicador elevado no constituye una sentencia de fraude. La presentación del detalle por factor y del estado de cobertura permite explicitar parte de estas limitaciones ante el usuario.
+
+La visualización mediante un panel web facilita consultar publicaciones y resultados almacenados, mientras que la extensión de navegador muestra la evaluación en el contexto de la página visitada. Las decisiones de organización de interfaces, arquitectura y flujo de información se desarrollan en el capítulo~\ref{cap:marco-tecnologico}; las comprobaciones sobre su integración se presentan en el capítulo~\ref{cap:resultados}.
+
+\section{Brechas identificadas y aporte del proyecto}\label{sec:ml-brechas}
+
+La revisión permite identificar necesidades que no se resuelven por completo utilizando una sola fuente de información. Los sistemas de reputación aportan señales útiles, pero se encuentran sujetos a sesgos, períodos de observación y disponibilidad específica; las técnicas estadísticas pueden detectar diferencias, pero dependen de la calidad de la muestra; las contribuciones comunitarias amplían el alcance potencial, aunque pueden ser manipuladas; y los modelos automatizados requieren validación con datos adecuados antes de atribuirles un rendimiento de detección.
+
+La tabla~\ref{tab:ml-brechas} vincula estas observaciones con decisiones de diseño propuestas para MarketLens. Las decisiones constituyen hipótesis de solución y mecanismos verificables del prototipo, no pruebas de superioridad respecto de los sistemas existentes.
+
+\begin{table}[htbp]
+    \centering
+    \caption{Relación entre brechas de la literatura y decisiones de MarketLens}
+    \label{tab:ml-brechas}
+    \footnotesize
+    \begin{tabularx}{\textwidth}{@{}p{0.27\textwidth}X X@{}}
+        \toprule
+        \textbf{Necesidad identificada} & \textbf{Decisión adoptada o prevista} & \textbf{Verificación o limitación} \\
+        \midrule
+        Reputación parcial o sesgada & Combinar historial observable del vendedor con otros factores. & Verificación funcional de reglas; eficacia preventiva no medida. \\
+        \addlinespace[2pt]
+        Datos faltantes o inaccesibles & Comunicar cobertura y no inferir ausencia de ventas desde valores desconocidos. & Cobertura parcial visible en el caso de la publicación \#70. \\
+        \addlinespace[2pt]
+        Comparaciones de precios poco confiables & Selección de candidatos por texto y comprobaciones de equivalencia; referencias provisionales. & Casos de referencias insuficientes y advertencias de comparabilidad. \\
+        \addlinespace[2pt]
+        Necesidad de resultados interpretables & Mostrar puntuación, nivel y contribuciones de factores. & Respuestas de API y captura de extensión en el Cap.~\ref{cap:resultados}. \\
+        \addlinespace[2pt]
+        Posible sesgo en aportes comunitarios & Prever registro y revisión de reportes con controles de calidad. & Funcionalidad conceptual pendiente de validación integral. \\
+        \bottomrule
+    \end{tabularx}
+\end{table}
+
+El aporte previsto no reside en inventar un indicador aislado que sustituya a la investigación humana o a los mecanismos de seguridad de los marketplaces. Reside en construir una \textbf{arquitectura extensible que combine señales heterogéneas, explicaciones de factores y gestión explícita de la cobertura}, de manera que el usuario pueda examinar el riesgo con mayor información contextual.
+
+\section{Marco conceptual y síntesis}\label{sec:ml-marco-conceptual}
+
+Para mantener una terminología consistente, este proyecto utiliza las siguientes distinciones:
+
+\begin{description}
+    \item[Publicación:] registro digital mediante el cual se ofrece un producto o servicio, con atributos visibles y condiciones de consulta que dependen de la plataforma.
+    \item[Vendedor:] cuenta o participante asociado a la publicación, con señales de actividad y reputación que pueden estar disponibles de manera total o parcial.
+    \item[Factor de riesgo:] criterio definido por el motor de evaluación que puede aportar puntos bajo condiciones explícitas.
+    \item[Índice de riesgo:] puntuación calculada mediante reglas y ponderaciones; no es una probabilidad calibrada ni una confirmación de fraude.
+    \item[Cobertura:] proporción de factores previstos para los cuales existen datos suficientes para evaluar un caso.
+    \item[Referencia provisional:] publicación considerada potencialmente comparable, cuya equivalencia comercial no se ha corroborado completamente.
+    \item[Reporte colaborativo:] información aportada por un usuario que debe tratarse como observación sujeta a verificación, no como conclusión automática.
+\end{description}
+
+En síntesis, la bibliografía sostiene la relevancia de estudiar la confianza, la reputación y el análisis de datos en entornos de comercio electrónico. También demuestra que la información disponible puede ser sesgada, incompleta o poco representativa. Estos hallazgos fundamentan el uso de reglas transparentes y criterios de suficiencia en la primera implementación de MarketLens, así como la necesidad de distinguir su verificación técnica de una validación futura de su capacidad real para detectar operaciones fraudulentas.
+
+% =============================================================
+% NOTAS EDITORIALES — NO SE IMPRIMEN
+% - El informe UFECI describe reportes recibidos, no fraudes comprobados.
+% - Se conservaron tres referencias bibliográficas del capítulo 1.
+% - Incorporar las siete entradas nuevas del .bib adjunto.
+% - No se afirma que se hayan realizado entrevistas a especialistas.
+% - El número sugerido de páginas por la cátedra es orientativo.
+% - Verificar que la jerarquía de títulos y las tablas respeten la clase USAL.
+% =============================================================

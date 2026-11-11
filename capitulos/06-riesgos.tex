@@ -1,102 +1,157 @@
 %!TEX root = ../main.tex
 % =============================================================
-%  CAPÍTULO 6 — ANÁLISIS DE RIESGOS     (Entrega 6 · 5 % · 29/9)
+% CAPÍTULO 6 — ANÁLISIS DE RIESGOS · MARKETLENS
+% Adaptado a la plantilla USAL a partir de la matriz del DOCX.
+% Los riesgos R-01 a R-15 provienen de 15 riesgos identificados
+% en el DOCX original (reordenados por exposición).
+% R-16 es un riesgo NUEVO para continuidad del autor académico.
+% Escalas cuantitativas: asignaciones editoriales de planificación;
+% NO son mediciones empíricas de probabilidad.
+% Referencia adicional: ml-pmi-2021 (véase .bib adjunto).
 % =============================================================
 
 \chapter{Análisis de riesgos}\label{cap:riesgos}
 
-\begin{guia}[Guía de la cátedra: qué espera ver en este capítulo]
-Formato obligatorio de cada riesgo: \textbf{``Debido a [causa], podría
-ocurrir [evento], lo que provocaría [efecto]''}. Sin causa es un miedo,
-no un riesgo.
-\begin{enumerate}
-    \item \textbf{Tabla de riesgos} con ID, descripción causa--evento--efecto,
-          naturaleza, etapa, probabilidad (1--5), impacto (1--5),
-          \gls{exposicion} (1--25), respuesta, responsable y contingencia;
-          ordenada por exposición descendente. Con los 6 a 8 primeros bien
-          tratados alcanza; el resto se monitorea.
-    \item Al menos un riesgo de \textbf{cada naturaleza} (alcance, técnicos,
-          recursos, terceros, datos y cumplimiento) y de \textbf{cada etapa}
-          (antes de arrancar, durante, pasaje a producción, operación).
-    \item Al menos un riesgo \textbf{externo} (``si no tienen ninguno, no
-          miraron para afuera'') y al menos uno con respuesta
-          \textbf{aceptar} bien justificado (``aceptar se escribe; ignorar
-          se paga'').
-    \item \textbf{Supuestos y restricciones} separados de los riesgos. Cada
-          supuesto que falla se convierte en riesgo.
-    \item Que sean propios: ``un riesgo copiado de internet se nota a tres
-          metros''.
-\end{enumerate}
-Los siete que matan proyectos: alcance que nunca cierra (el número uno
-de la materia), pérdida de la fuente de datos, equipo que se desarma,
-tecnología que no da, inviabilidad de costo, barrera legal o ética,
-nadie a cargo. Y la pregunta de jurado: ¿quién lo mantiene cuando
-ustedes se reciben? Marco de referencia: \citet{pmi2021}.
-\end{guia}
+\section{Propósito y alcance de la gestión de riesgos}\label{sec:ml-riesgos-alcance}
 
-\completar{Desarrollo del capítulo.}
+MarketLens combina software propio, datos observables de marketplaces y una propuesta de participación colaborativa. Esa combinación introduce incertidumbres de distintas naturalezas: dependencia de fuentes externas, falta de datos para verificar la capacidad de detección, errores de clasificación, seguridad, cumplimiento, viabilidad comercial y continuidad del desarrollo. La gestión de riesgos busca identificar \textbf{causas, eventos y efectos}, ordenar la atención por exposición y asignar respuestas concretas, de acuerdo con el enfoque de adaptación al contexto y tratamiento de incertidumbre de la dirección de proyectos \parencite{ml-pmi-2021}.
 
-\section{\completar{Nombre de la sección}}
+El análisis se refiere tanto a la \textbf{etapa académica y de prototipo} como a una eventual \textbf{puesta en producción}. Se evita asumir que las funcionalidades previstas ya se encuentran disponibles o validadas. En particular, la integración con otras plataformas y el uso operativo de reportes colaborativos requieren pruebas y controles adicionales. Las decisiones técnicas de mitigación se vinculan con el capítulo~\ref{cap:marco-tecnologico}, y los supuestos comerciales con el capítulo~\ref{cap:economica}.
 
-\completar{Texto.}
+La matriz retoma \textbf{15 riesgos identificados en el documento original} y añade un riesgo específico (R-16) de disponibilidad del responsable del proyecto. Las descripciones se reformularon en la secuencia \emph{causa--evento--efecto} exigida por la cátedra. La numeración corresponde al \textbf{orden de exposición}, no al orden de las tablas originales.
 
-% Matriz de exposición de la clase 11: probabilidad x impacto.
-\begin{table}[H]
-    \centering
-    \caption{Matriz de exposición: probabilidad $\times$ impacto (escala de la cátedra)}
-    \label{tab:exposicion}
-    \small
-    \begin{tabular}{l c c c c c}
-        \toprule
-        & \tb{1 Insignif.} & \tb{2 Menor} & \tb{3 Moderado} & \tb{4 Importante} & \tb{5 Severo} \\
-        \midrule
-        \tb{5 Muy probable}   & \riesgoBajo{5}  & \riesgoMedio{10} & \riesgoAlto{15} & \riesgoAlto{20} & \riesgoAlto{25} \\
-        \tb{4 Probable}       & \riesgoBajo{4}  & \riesgoMedio{8}  & \riesgoAlto{12} & \riesgoAlto{16} & \riesgoAlto{20} \\
-        \tb{3 Posible}        & \riesgoBajo{3}  & \riesgoMedio{6}  & \riesgoMedio{9} & \riesgoAlto{12} & \riesgoAlto{15} \\
-        \tb{2 Poco probable}  & \riesgoBajo{2}  & \riesgoBajo{4}   & \riesgoMedio{6} & \riesgoMedio{8} & \riesgoMedio{10} \\
-        \tb{1 Muy improbable} & \riesgoBajo{1}  & \riesgoBajo{2}   & \riesgoBajo{3}  & \riesgoBajo{4}  & \riesgoBajo{5} \\
-        \bottomrule
-    \end{tabular}
+\section{Criterios de valoración}\label{sec:ml-riesgos-escalas}
+
+La exposición de un riesgo se calcula como \(E=P\times I\), donde \(P\) es la probabilidad estimada e \(I\) es el impacto potencial, ambos en una escala ordinal de 1 a 5. Los valores no son probabilidades estadísticas ni provienen de una muestra de incidentes: constituyen \textbf{juicios preliminares de planificación} que deberán revisarse con evidencia real.
+
+Para conservar la evaluación cualitativa del Word, se utilizó una correspondencia \textbf{explícita de trabajo}: probabilidad \emph{alta} \(\rightarrow P=4\), \emph{media} \(\rightarrow P=3\), \emph{baja} \(\rightarrow P=2\); impacto \emph{alto} \(\rightarrow I=4\) y \emph{medio} \(\rightarrow I=3\). Los extremos 1 y 5 quedan disponibles para futuras revisiones, pero no se asignan sin justificación adicional. El riesgo R-16 se valora independientemente como propuesta nueva.
+
+Conforme a la matriz de la cátedra, las exposiciones de 1 a 5 son \emph{bajas}, de 6 a 10 \emph{medias} y de 12 a 25 \emph{altas}. Se priorizan los valores mayores; en empates, la proximidad de la etapa y el posible perjuicio a usuarios o terceros pueden orientar el orden de tratamiento.
+
+\begin{table}[htbp]
+\centering
+\caption{Matriz de exposición: probabilidad por impacto (escala de la cátedra)}
+\label{tab:exposicion}
+\scriptsize
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{@{}lccccc@{}}
+\toprule
+ & \textbf{I=1} & \textbf{I=2} & \textbf{I=3} & \textbf{I=4} & \textbf{I=5} \\
+\midrule
+\textbf{P=5} & \riesgoBajo{5} & \riesgoMedio{10} & \riesgoAlto{15} & \riesgoAlto{20} & \riesgoAlto{25} \\
+\textbf{P=4} & \riesgoBajo{4} & \riesgoMedio{8} & \riesgoAlto{12} & \riesgoAlto{16} & \riesgoAlto{20} \\
+\textbf{P=3} & \riesgoBajo{3} & \riesgoMedio{6} & \riesgoMedio{9} & \riesgoAlto{12} & \riesgoAlto{15} \\
+\textbf{P=2} & \riesgoBajo{2} & \riesgoBajo{4} & \riesgoMedio{6} & \riesgoMedio{8} & \riesgoMedio{10} \\
+\textbf{P=1} & \riesgoBajo{1} & \riesgoBajo{2} & \riesgoBajo{3} & \riesgoBajo{4} & \riesgoBajo{5} \\
+\bottomrule
+\end{tabular}
 \end{table}
 
-\begin{ejemplo}[Ejemplo de la cátedra: así no / así sí]
-\textbf{Así no:} ``Puede fallar el servidor.'' No hay causa, no hay
-consecuencia y no se puede hacer nada con esa frase.
+\noindent\textit{Nota:} la escala expresa \emph{exposición relativa para priorizar acciones}, no una predicción de pérdidas monetarias. Las etapas de la siguiente tabla son \emph{previa}, \emph{durante el desarrollo}, \emph{pasaje a producción} y \emph{operación}; el riesgo de continuidad puede abarcar dos etapas.
 
-\textbf{Así sí:} ``Debido a que el prototipo corre en una única VM sin
-réplica, podría caerse durante la demo, lo que impediría mostrar el
-resultado al jurado.''
+\section{Registro y priorización de riesgos}\label{sec:ml-registro-riesgos}
 
-Cuatro respuestas posibles: \textbf{evitar} (sacar la causa: cambiar el
-alcance), \textbf{mitigar} (bajar probabilidad o impacto: repositorio con
-backup, ambiente de respaldo), \textbf{transferir} (que lo asuma un
-tercero: hosting administrado, librería probada) y \textbf{aceptar}
-(convivir con él, documentado, con responsable y contingencia).
-\end{ejemplo}
+La tabla~\ref{tab:matriz-riesgos} incluye cada causa, evento, efecto, naturaleza, etapa, estimación de probabilidad (P), impacto (I), exposición (E), estrategia, responsable y contingencia. Los riesgos se ordenan de \textbf{mayor a menor exposición}; los empates no implican que los casos tengan igual urgencia ni igual magnitud de pérdidas.
 
-% La matriz va apaisada (landscape) porque tiene muchas columnas.
-% Columnas: l = ancho fijo, p{..} = ancho fijo con corte de línea,
-% L = ancho automático (se reparte el espacio restante).
+El \textbf{responsable inicial de todos los riesgos es el autor durante el desarrollo académico}. La columna no implica que exista un equipo de operación contratado. Antes de lanzar el servicio deberá designarse expresamente un responsable técnico y de cumplimiento para el mantenimiento, la moderación de reportes y la atención de incidentes; sin esa asignación, el pasaje a producción no debería aprobarse.
+
+% Se mantiene la matriz apaisada para respetar las diez columnas
+% de la plantilla, con saltos automáticos entre páginas.
 \begin{landscape}
-\small
-\begin{xltabular}{\linewidth}{l L p{1.7cm} p{1.6cm} c c c L p{1.3cm} L}
-    \caption{Matriz de riesgos ordenada por exposición (ejemplo de estructura)}
-    \label{tab:matriz-riesgos} \\
-    \toprule
-    \tb{ID} & \tb{Descripción (causa, evento, efecto)} & \tb{Naturaleza} & \tb{Etapa} & \tb{P} & \tb{I} & \tb{E} & \tb{Respuesta} & \tb{Resp.} & \tb{Contingencia} \\
-    \midrule
-    \endfirsthead
-    \toprule
-    \tb{ID} & \tb{Descripción (causa, evento, efecto)} & \tb{Naturaleza} & \tb{Etapa} & \tb{P} & \tb{I} & \tb{E} & \tb{Respuesta} & \tb{Resp.} & \tb{Contingencia} \\
-    \midrule
-    \endhead
-    \bottomrule
-    \endfoot
-    R-01 & Debido a que los requerimientos se relevan con un solo usuario, podría ocurrir que aparezcan funciones nuevas en cada revisión, lo que provocaría que el alcance no cierre antes de la entrega final. & Alcance & Durante & 4 & 5 & \riesgoAlto{20} & Mitigar: congelar el alcance del \gls{mvp} en el hito H4 & Autor & Recortar a los \gls{rf} de prioridad alta \\
-    R-02 & Debido a que el prototipo corre en una única VM sin réplica, podría caerse durante la demo, lo que impediría mostrar el resultado al jurado. & Técnico & Pasaje a producción & 3 & 5 & \riesgoAlto{15} & Mitigar: ambiente de respaldo y video de la demo & Autor & Mostrar el video y el ambiente local \\
-    R-03 & Debido a que la fuente de datos es una \gls{api} de terceros sin acuerdo de servicio, podría ocurrir que cambie o se cierre, lo que provocaría la pérdida del insumo del modelo. & Datos / terceros (externo) & Operación & 3 & 5 & \riesgoAlto{15} & Mitigar: descarga periódica y respaldo local & Autor & Reentrenar con el último respaldo \\
-    R-04 & Debido a que el hosting se cotiza en dólares y el presupuesto en pesos, podría ocurrir que el costo supere lo previsto, lo que provocaría la suspensión del entorno de producción. & Recursos (externo) & Operación & 3 & 3 & \riesgoMedio{9} & Transferir: hosting administrado con plan gratuito de respaldo & Autor & Migrar a entorno gratuito degradado \\
-    R-05 & Debido a que el equipo es de una persona, podría ocurrir una enfermedad o sobrecarga laboral, lo que provocaría atrasos en las entregas. & Recursos & Durante & 2 & 4 & \riesgoMedio{8} & Aceptar: no hay reemplazo posible; se documenta el avance semanalmente & Autor & Solicitar prórroga a la cátedra con evidencia \\
-    R-06 & \completar{...} & \completar{...} & \completar{...} & \completar{} & \completar{} & \riesgoBajo{\completar{}} & \completar{...} & \completar{...} & \completar{...} \\
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{2.1pt}
+\renewcommand{\arraystretch}{1.13}
+\begin{xltabular}{\linewidth}{@{}p{0.7cm} >{\hsize=1.30\hsize\raggedright\arraybackslash}X p{2.0cm} p{1.6cm} c c c >{\hsize=0.85\hsize\raggedright\arraybackslash}X p{0.9cm} >{\hsize=0.85\hsize\raggedright\arraybackslash}X@{}}
+\caption{Matriz de riesgos de MarketLens ordenada por exposición}\label{tab:matriz-riesgos} \\
+\toprule
+\textbf{ID} & \textbf{Descripción (causa--evento--efecto)} & \textbf{Naturaleza} & \textbf{Etapa} & \textbf{P} & \textbf{I} & \textbf{E} & \textbf{Respuesta} & \textbf{Resp.} & \textbf{Contingencia} \\
+\midrule
+\endfirsthead
+\multicolumn{10}{l}{\small\itshape Matriz de riesgos (continuación)} \\
+\toprule
+\textbf{ID} & \textbf{Descripción (causa--evento--efecto)} & \textbf{Naturaleza} & \textbf{Etapa} & \textbf{P} & \textbf{I} & \textbf{E} & \textbf{Respuesta} & \textbf{Resp.} & \textbf{Contingencia} \\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+R-01 & Debido a que las APIs y la estructura de las páginas pertenecen a terceros, podrían restringirse o modificarse atributos accesibles, lo que impediría completar ciertos análisis. & Datos / terceros & Operación & 4 & 4 & \riesgoAlto{16} & Mitigar: desacoplar conectores y admitir datos visibles de la extensión con cobertura parcial. & Autor & Deshabilitar la fuente afectada, informar limitaciones y continuar con datos permitidos. \\
+R-02 & Debido a que las estrategias de fraude evolucionan, las reglas actuales podrían dejar de reconocer algunas señales, lo que aumentaría el riesgo de evaluaciones insuficientes. & Técnico & Operación & 4 & 4 & \riesgoAlto{16} & Mitigar: revisar factores periódicamente y añadir escenarios a las pruebas de regresión. & Autor & Suspender reglas obsoletas y comunicar que el índice no prueba ausencia de fraude. \\
+R-03 & Debido a que todavía no existe un conjunto representativo de casos etiquetados, podría no validarse la precisión del motor, lo que limitaría la evaluación de la hipótesis. & Datos & Durante & 3 & 4 & \riesgoAlto{12} & Mitigar: documentar cobertura, resultados funcionales y plan de validación externa. & Autor & Declarar la hipótesis no confirmada y limitar conclusiones a funcionamiento técnico. \\
+R-04 & Debido a que se usarían datos de plataformas y potencialmente de personas, podrían incumplirse normas o condiciones de uso, lo que produciría restricciones y consecuencias legales. & Cumplimiento & Paso a prod. & 3 & 4 & \riesgoAlto{12} & Evitar/mitigar: revisión de términos, minimización de datos y control previo al despliegue. & Autor & Suspender la funcionalidad cuestionada y revisar su base de acceso o tratamiento. \\
+R-05 & Debido a que el diseño contempla reportes de usuarios, podrían presentarse aportes falsos o coordinados, lo que distorsionaría indicadores y afectaría a vendedores legítimos. & Datos & Operación & 3 & 4 & \riesgoAlto{12} & Mitigar: moderación, revisión de evidencia, límites y ponderaciones independientes. & Autor & Retirar reportes impugnados y recalcular evaluaciones afectadas. \\
+R-06 & Debido a que un precio bajo o pocas ventas no demuestran fraude, el motor podría elevar el riesgo de publicaciones legítimas, lo que generaría falsas alarmas y daño reputacional. & Técnico & Durante & 3 & 4 & \riesgoAlto{12} & Mitigar: explicar factores, mostrar cobertura y probar casos legítimos. & Autor & Revisar la regla, corregir resultados y evitar afirmaciones concluyentes. \\
+R-07 & Debido a atributos ausentes o criterios limitados, el motor podría asignar bajo riesgo a una publicación problemática, lo que induciría una confianza injustificada. & Técnico & Durante & 3 & 4 & \riesgoAlto{12} & Mitigar: declarar evidencia disponible, probar casos adversos y limitar inferencias. & Autor & Añadir advertencia de cobertura y revisar los factores insuficientes. \\
+R-08 & Debido a que el valor de las funciones premium todavía no fue validado, pocos usuarios podrían contratar el servicio, lo que impediría alcanzar los ingresos proyectados. & Recursos & Operación & 3 & 4 & \riesgoAlto{12} & Mitigar: comprobar disposición a pagar y mantener costos escalables. & Autor & Revisar precios y funciones; posponer gastos hasta validar demanda. \\
+R-09 & Debido a que la propuesta no cuenta aún con adopción comercial comprobada, podrían incorporarse menos usuarios de los previstos, lo que limitaría datos colaborativos e ingresos. & Alcance & Operación & 3 & 4 & \riesgoAlto{12} & Mitigar: simplificar el uso, probar propuesta de valor y mantener acceso gratuito. & Autor & Reducir costos y concentrar el producto en el análisis individual. \\
+R-10 & Debido a que una puntuación puede interpretarse como acusación, podrían difundirse conclusiones incorrectas sobre vendedores, lo que perjudicaría a terceros y a la confianza en MarketLens. & Cumplimiento & Operación & 3 & 4 & \riesgoAlto{12} & Mitigar: lenguaje preventivo, explicaciones y revisión de reportes. & Autor & Corregir o retirar la información cuestionada y habilitar revisión. \\
+R-11 & Debido a la dependencia de servicios externos y sus tarifas, podrían aumentar los precios o cambiar los planes, lo que elevaría los gastos previstos. & Terceros & Operación & 3 & 4 & \riesgoAlto{12} & Mitigar: evitar proveedores únicos y evaluar alternativas antes de contratar. & Autor & Sustituir servicios o limitar funciones que eleven el costo. \\
+R-12 & Debido a que el consumo de infraestructura podría crecer más rápido que lo previsto, aumentarían los gastos operativos, lo que reduciría el margen disponible. & Recursos & Operación & 3 & 3 & \riesgoMedio{9} & Mitigar: supervisar consumo y escalar bajo demanda. & Autor & Reducir procesos costosos y establecer topes de uso. \\
+R-13 & Debido a que los reportes dependen de la participación voluntaria, podría recibirse poca información, lo que reduciría la utilidad del análisis colaborativo. & Datos & Operación & 3 & 3 & \riesgoMedio{9} & Mitigar: no hacer depender el índice solo de reportes y combinar otras fuentes. & Autor & Operar temporalmente con factores automáticos y declarar cobertura limitada. \\
+R-14 & Debido al desarrollo incremental y a la amplitud funcional propuesta, podrían agregarse tareas sin priorización, lo que atrasaría entregables del MVP. & Alcance & Durante & 3 & 3 & \riesgoMedio{9} & Mitigar: priorizar funcionalidades críticas y controlar cambios por entregable. & Autor & Postergar integración multisitio y funciones no esenciales. \\
+R-15 & Debido a que el sistema gestiona autenticación, API y datos persistentes, podrían existir fallas de seguridad, lo que permitiría accesos indebidos o interrupciones. & Técnico & Paso a prod. & 2 & 4 & \riesgoMedio{8} & Mitigar: autenticación, autorización, validación y pruebas de seguridad. & Autor & Revocar accesos comprometidos y suspender temporalmente el servicio. \\
+R-16 & Debido a que el desarrollo académico depende de una sola persona, podría ocurrir una indisponibilidad temporal, lo que retrasaría tareas y entregables. & Recursos & Previo / durante & 2 & 3 & \riesgoMedio{6} & Aceptar: no se justifica incorporar un reemplazo; guardar avances en Git y reservar margen. & Autor & Priorizar funciones verificadas y presentar el avance documentado. \\
 \end{xltabular}
+\endgroup
 \end{landscape}
+
+\noindent\textit{Nota metodológica:} ``Paso a prod.'' representa el pasaje a producción. Los factores R-01 a R-15 provienen de la matriz de riesgos del informe original; su redacción y valoración numérica se adaptaron a la estructura de la cátedra. R-16 se incorpora para hacer explícita la continuidad del trabajo a cargo de una sola persona.
+
+\section{Tratamiento de los riesgos prioritarios}\label{sec:ml-tratamiento-riesgos}
+
+Aunque todos los riesgos tienen respuesta y contingencia en la matriz, se da seguimiento más detallado a ocho situaciones de mayor exposición o consecuencias particularmente relevantes.
+
+\begin{enumerate}
+    \item \textbf{Acceso a APIs y cambios externos (R-01).} Señal de activación: atributos antes disponibles dejan de recuperarse o una integración devuelve errores persistentes. Acción: desacoplar el conector, verificar términos de acceso y utilizar información visible facilitada legítimamente por la extensión cuando corresponda. Criterio de continuidad: un análisis sin datos suficientes debe informar su \emph{cobertura parcial} y no inventar atributos.
+
+    \item \textbf{Evolución de las modalidades de fraude (R-02).} Señal: aparecen patrones que las reglas vigentes no contemplan o se detectan contradicciones en nuevas pruebas. Acción: revisar factores y ponderaciones, añadir casos de regresión y publicar límites de interpretación. No debe afirmarse una tasa de detección sin una muestra etiquetada adecuada.
+
+    \item \textbf{Datos insuficientes para validar precisión (R-03).} Señal: no se dispone de un conjunto representativo con condición real de fraude/legitimidad verificable. Acción: distinguir verificación técnica de evaluación estadística, registrar versiones de reglas y documentar el conjunto futuro de validación. Contingencia: mantener la hipótesis de eficacia preventiva como no comprobada.
+
+    \item \textbf{Cumplimiento de normas y condiciones externas (R-04).} Señal: un nuevo flujo requiere recopilar datos personales adicionales o cambia la autorización de acceso de una plataforma. Acción: revisar finalidad, minimización y condiciones aplicables antes de implementar o desplegar. Contingencia: deshabilitar esa fuente hasta resolver la cuestión; la estrategia jurídica requiere evaluación especializada si se comercializa el servicio.
+
+    \item \textbf{Reportes falsos o maliciosos (R-05).} Señal: se reciben aportes repetidos, contradictorios o sin evidencia mínima. Acción: moderación, trazabilidad, revisión de duplicados y separación entre reportes y señales independientes. La existencia de reportes no debe convertirse automáticamente en acusación de fraude.
+
+    \item \textbf{Falsos positivos (R-06).} Señal: una publicación legítima recibe advertencias graves por datos débiles o contradicciones de producto. Acción: verificar comparabilidad y origen de cada factor, exponer las razones del puntaje y revisar reglas. Contingencia: corregir evaluaciones y facilitar solicitudes de revisión en una operación real.
+
+    \item \textbf{Falsos negativos (R-07).} Señal: una evaluación aparentemente baja se apoya en cobertura muy limitada. Acción: presentar cobertura junto con el índice, incorporar escenarios adversos y evitar etiquetas de ``venta segura''. Contingencia: señalar el límite de la información y revisar las reglas responsables.
+
+    \item \textbf{Conversión a premium no validada (R-08).} Señal: pruebas de interés o de disposición a pagar no sustentan los usuarios hipotéticos del modelo financiero. Acción: validar necesidad y precio antes de ampliar infraestructura; mantener un producto mínimo funcional. Contingencia: revisar el modelo de negocio y reducir compromisos recurrentes.
+\end{enumerate}
+
+Los demás riesgos (R-09 a R-16) se monitorean mediante revisión de alcance, límites operativos y control de cambios. En particular, el riesgo R-16 se \textbf{acepta explícitamente} para la etapa académica porque contratar un reemplazo no resultaría proporcional a los recursos y al alcance actual. Aceptarlo no significa ignorarlo: se conserva el avance en control de versiones y se priorizan entregables verificables ante una eventual interrupción.
+
+\section{Supuestos y restricciones del análisis}\label{sec:ml-riesgos-supuestos}
+
+Los \textbf{supuestos} son condiciones utilizadas para planificar, que todavía pueden requerir comprobación. Si dejan de cumplirse, pueden activar un riesgo del registro:
+\begin{itemize}
+    \item Se podrá acceder, al menos parcialmente, a datos de publicaciones compatibles y a fuentes permitidas por sus respectivas condiciones (R-01).
+    \item El prototipo seguirá ejecutándose en un entorno de desarrollo y permitirá registrar las pruebas necesarias para verificar las reglas implementadas (R-03, R-15).
+    \item El modelo de ingresos, cantidad de suscriptores y precio premium constituyen escenarios hipotéticos, no ingresos reales ni demanda confirmada (R-08, R-09).
+    \item Será posible revisar las ponderaciones y comunicar al usuario los factores que intervienen en la puntuación, manteniendo visibles las limitaciones de la evidencia (R-06, R-07).
+\end{itemize}
+
+Las \textbf{restricciones} son límites actuales del trabajo y no se deben confundir con riesgos futuros:
+\begin{itemize}
+    \item El desarrollo académico cuenta con disponibilidad temporal y recursos limitados; la planificación se centra en un prototipo y una validación parcial (R-14, R-16).
+    \item El sistema depende de datos de terceros cuya disponibilidad y permiso de reutilización no controla (R-01, R-04).
+    \item No existe todavía evidencia representativa y etiquetada para medir precisión real de identificación de fraudes; las pruebas actuales verifican comportamiento funcional (R-03).
+    \item La operación comercial y la atención permanente de incidentes no forman parte de la implementación actualmente acreditada (R-10, R-15).
+\end{itemize}
+
+\section{Seguimiento, responsabilidades y riesgo residual}\label{sec:ml-riesgos-seguimiento}
+
+Durante el desarrollo, los riesgos se revisarán al cerrar hitos, al integrar una fuente externa o al modificar las reglas de evaluación. Una revisión deberá registrar, para los riesgos relevantes, el evento observado, la decisión adoptada y los resultados de las pruebas posteriores. El control de versiones sirve como respaldo de cambios, pero no sustituye copias de seguridad de datos ni procedimientos operativos.
+
+Antes de una puesta en producción será necesario asignar responsables de mantenimiento y atención de incidentes, establecer un procedimiento de moderación y corrección, revisar el cumplimiento normativo, verificar seguridad e infraestructura, y definir si las evaluaciones podrán ofrecerse con la cobertura disponible. Las medidas propuestas reducen exposición, pero \textbf{no eliminan el riesgo residual}. En particular, los marketplaces pueden cambiar su acceso, las reglas pueden producir errores y la adopción puede resultar insuficiente aun cuando la implementación técnica sea correcta.
+
+En conclusión, el riesgo del proyecto se concentra en \textbf{dependencias externas, calidad de datos, interpretabilidad de los resultados y viabilidad de adopción}. La matriz ofrece criterios para priorizar el desarrollo y decidir qué funcionalidades deben quedar fuera del despliegue hasta contar con evidencia y controles adecuados. La coherencia entre esta planificación, los indicadores del capítulo~\ref{cap:metodologia} y las pruebas del capítulo~\ref{cap:resultados} se revisará conforme evolucione el prototipo.
+
+% =============================================================
+% CONTROL EDITORIAL — NO SE IMPRIME
+% 1. Revisar P e I con el autor; son estimaciones nuevas.
+% 2. Confirmar que la etapa de cada riesgo coincide con planificación.
+% 3. No afirmar que reportes están operativos o moderados.
+% 4. Mantener R-16 como riesgo añadido, no como dato Word.
+% 5. Necesita ml-pmi-2021 en refs.bib.
+% =============================================================
