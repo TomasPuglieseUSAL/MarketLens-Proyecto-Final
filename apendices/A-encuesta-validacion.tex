@@ -1,34 +1,130 @@
 %!TEX root = ../main.tex
-% APÉNDICE A — Encuesta de validación
+% Apéndice A — cuestionario derivado del CSV de respuestas, corte 15/11/2026.
+% Si había opciones nunca seleccionadas, verificar su texto exacto en Google Forms.
+\chapter{Encuesta de validación exploratoria}\label{apx:encuesta}
+\section{Objetivo y alcance}
 
-\chapter{Encuesta de validación}\label{apx:encuesta}
+El objetivo de la encuesta fue explorar experiencias de compra, percepciones de seguridad y confianza en plataformas digitales, así como el interés potencial en una herramienta independiente de evaluación preventiva del riesgo. La encuesta no requirió interactuar con el software MarketLens ni pretendió medir su eficacia técnica. Se aplicó durante la etapa de documentación del proyecto, no antes del desarrollo del prototipo.
 
-\begin{guia}
-Los apéndices contienen material producido por el autor que respalda
-el cuerpo pero lo interrumpiría. Acá va la encuesta completa: para qué
-se hizo, cómo se diseñó y distribuyó, a cuántas personas llegó y el
-cuestionario tal como lo vieron quienes respondieron. Los resultados
-se analizan en el capítulo~\ref{cap:resultados}.
-\end{guia}
+\section{Metodología de aplicación}
 
-\section{Introducción}
+Se utilizó un cuestionario en línea de once preguntas cerradas: respuestas únicas, escalas de cinco puntos y selección de varias alternativas. La difusión se realizó a través de contactos del autor, mediante una muestra \textbf{no probabilística por conveniencia}. En el corte de datos analizado se registraron \textbf{61 respuestas completas}, recibidas entre el 10 y el 15 de noviembre de 2026. El archivo exportado incluye una marca temporal y las once columnas de respuestas; no contiene campos explícitos de nombre o correo electrónico.
 
-\completar{Objetivo de la encuesta y qué se quería validar.}
+El análisis se efectuó mediante frecuencias y porcentajes descriptivos, tomando 61 como denominador para cada pregunta. En las preguntas de selección múltiple, una misma persona puede contribuir a varias categorías, por lo que los porcentajes no necesariamente suman 100\,\%. La participación voluntaria y el círculo de difusión limitan la representatividad de los resultados.
 
-\section{Metodología}
+\section{Presentación del cuestionario}
 
-\completar{Diseño del cuestionario, población, canal de distribución,
-período de aplicación y cantidad de respuestas.}
+El formulario se difundió mediante Google Forms en la dirección \href{https://forms.gle/VtUtZDMNPApc3VeQ6}{formulario público en Google Forms}. Su temática fue la seguridad y confianza en marketplaces digitales. Las preguntas iniciales exploraron hábitos y percepción de riesgo. Antes del bloque sobre utilidad y funcionalidades se presentó la idea de una herramienta independiente de análisis preventivo, aclarando que sus indicadores no permiten determinar con certeza si una publicación es fraudulenta.
 
-\section{Presentación de la encuesta}
+\noindent\textit{Nota de transcripción:} las preguntas y las opciones enumeradas a continuación se recuperan de las respuestas exportadas. Si alguna opción del formulario no fue seleccionada por ninguna persona, podría no aparecer en el CSV y debe cotejarse con el formulario original antes de cerrar la versión definitiva del apéndice. Para facilitar la lectura se corrigió la errata ``verces'' por ``veces'' en una opción de frecuencia; los conteos se calcularon sin alterar los registros de origen.
 
-\completar{Texto introductorio que vieron las personas participantes
-(propósito, anonimato, duración estimada).}
+\section{Preguntas y opciones de respuesta}
+\subsection*{Pregunta 1. ¿Con qué frecuencia realizaste compras en marketplaces digitales durante los últimos 12 meses?}
+\noindent\textit{Tipo: Opción única.}
+\begin{itemize}\setlength\itemsep{1pt}
+\item Nunca
+\item Una o dos veces
+\item Entre 3 y 5 veces
+\item Entre 6 y 11 veces
+\item 12 veces o más
+\end{itemize}
+\subsection*{Pregunta 2. ¿Qué plataformas de compraventa digital utilizaste durante los últimos 12 meses?}
+\noindent\textit{Tipo: Selección múltiple.}
+\begin{itemize}\setlength\itemsep{1pt}
+\item Mercado Libre
+\item Amazon
+\item Temu
+\item Otras plataformas de compraventa
+\item Facebook Marketplace
+\item Ninguna
+\end{itemize}
+\subsection*{Pregunta 3. ¿Qué información consultás habitualmente para evaluar si una publicación o vendedor es confiable?}
+\noindent\textit{Tipo: Selección múltiple.}
+\begin{itemize}\setlength\itemsep{1pt}
+\item Reputación o calificaciones del vendedor
+\item Opiniones de compradores anteriores
+\item Cantidad de ventas realizadas por el vendedor
+\item Fotografías y descripción del producto
+\item Precio del producto en comparación con otras publicaciones
+\item Métodos de pago y políticas de protección al comprador
+\item No suelo verificar información adicional
+\end{itemize}
+\subsection*{Pregunta 4. ¿Alguna vez encontraste una publicación que te pareciera sospechosa o potencialmente engañosa?}
+\noindent\textit{Tipo: Opción única.}
+\begin{itemize}\setlength\itemsep{1pt}
+\item Sí
+\item No
+\item No estoy seguro/a
+\item No suelo consultar publicaciones en marketplaces
+\end{itemize}
+\subsection*{Pregunta 5. ¿Alguna vez decidiste no concretar una compra debido a la desconfianza que te generaba una publicación o vendedor?}
+\noindent\textit{Tipo: Opción única.}
+\begin{itemize}\setlength\itemsep{1pt}
+\item Sí
+\item No
+\item No lo recuerdo
+\item Nunca consideré realizar una compra en estas plataformas
+\end{itemize}
+\subsection*{Pregunta 6. En general, ¿Qué nivel de confianza te generan los mecanismos de seguridad y reputación que ofrecen actualmente los marketplaces?}
+\noindent\textit{Tipo: Escala de 1 a 5.}
+\begin{itemize}\setlength\itemsep{1pt}
+\item 1
+\item 2
+\item 3
+\item 4
+\item 5
+\end{itemize}
+\subsection*{Pregunta 7. ¿Qué características de una publicación te generarían mayor desconfianza?}
+\noindent\textit{Tipo: Selección múltiple.}
+\begin{itemize}\setlength\itemsep{1pt}
+\item Precio considerablemente inferior al de publicaciones similares
+\item Ausencia de calificaciones u opiniones
+\item Solicitud de realizar pagos fuera de la plataforma
+\item Vendedor con pocas ventas registradas
+\item Información contradictoria o poco clara sobre el producto
+\item Fotografías o descripciones insuficientes
+\item Ninguna de las anteriores
+\end{itemize}
+\subsection*{Pregunta 8. ¿Qué tan útil considerarías una herramienta de estas características antes de realizar una compra?}
+\noindent\textit{Tipo: Escala de 1 a 5.}
+\begin{itemize}\setlength\itemsep{1pt}
+\item 1
+\item 2
+\item 3
+\item 4
+\item 5
+\end{itemize}
+\subsection*{Pregunta 9. Si existiera una herramienta gratuita de este tipo, ¿considerarías utilizarla antes de realizar compras en marketplaces?}
+\noindent\textit{Tipo: Opción única.}
+\begin{itemize}\setlength\itemsep{1pt}
+\item Sí, probablemente la utilizaría con frecuencia
+\item Sí, pero solamente ante publicaciones que me generen dudas
+\item No estoy seguro/a
+\item Probablemente no la utilizaría
+\end{itemize}
+\subsection*{Pregunta 10. ¿Qué funcionalidades te resultarían más útiles en una herramienta de análisis preventivo?}
+\noindent\textit{Tipo: Selección múltiple.}
+\begin{itemize}\setlength\itemsep{1pt}
+\item Información sobre el historial comercial del vendedor
+\item Advertencias sobre información insuficiente o no disponible
+\item Explicación de los factores que generan riesgo
+\item Comparación automática de precios de productos similares
+\item Consulta de reportes realizados por otros usuarios
+\item Análisis de publicaciones de diferentes marketplaces
+\item Ninguna de las anteriores
+\end{itemize}
+\subsection*{Pregunta 11. ¿Cuáles serían tus principales preocupaciones al utilizar una herramienta de este tipo?}
+\noindent\textit{Tipo: Selección múltiple.}
+\begin{itemize}\setlength\itemsep{1pt}
+\item Que recopile datos personales innecesarios
+\item Que utilice información desactualizada
+\item Que genere advertencias incorrectas
+\item Que requiera demasiado tiempo o esfuerzo
+\item Que no sea compatible con las plataformas que utilizo
+\item Que sus resultados sean difíciles de interpretar
+\item No tendría preocupaciones particulares
+\end{itemize}
 
-\section{Cuestionario}
+\section{Registro de resultados}
 
-\begin{enumerate}
-    \item \completar{Pregunta 1 (tipo: opción única).}
-    \item \completar{Pregunta 2 (tipo: escala 1--5).}
-    \item \completar{Pregunta 3 (tipo: abierta).}
-\end{enumerate}
+Los resultados agregados, su interpretación y las figuras correspondientes se presentan en la sección~\ref{sec:ml-resultados-encuesta} del capítulo~\ref{cap:resultados}. El conjunto utilizado en este corte contiene 61 respuestas completas. Se preservaron exclusivamente conteos agregados para la documentación del informe, sin reproducir las marcas temporales ni filas individuales en este apéndice.

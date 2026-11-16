@@ -1,0 +1,61 @@
+﻿pregunta,texto_pregunta,tipo,opcion_original,etiqueta_grafico,respuestas,base,porcentaje_sobre_base
+1,¿Con qué frecuencia realizaste compras en marketplaces digitales durante los últimos 12 meses?,opción única o escala,Entre 3 y 5 veces,3–5 compras,15,61,24.5902
+1,¿Con qué frecuencia realizaste compras en marketplaces digitales durante los últimos 12 meses?,opción única o escala,12 verces o más,12 o más compras,14,61,22.9508
+1,¿Con qué frecuencia realizaste compras en marketplaces digitales durante los últimos 12 meses?,opción única o escala,Nunca,Nunca,11,61,18.0328
+1,¿Con qué frecuencia realizaste compras en marketplaces digitales durante los últimos 12 meses?,opción única o escala,Una o dos veces,1–2 compras,11,61,18.0328
+1,¿Con qué frecuencia realizaste compras en marketplaces digitales durante los últimos 12 meses?,opción única o escala,Entre 6 y 11 veces,6–11 compras,10,61,16.3934
+2,¿Qué plataformas de compraventa digital utilizaste durante los últimos 12 meses?,selección múltiple,Mercado Libre,Mercado Libre,52,61,85.2459
+2,¿Qué plataformas de compraventa digital utilizaste durante los últimos 12 meses?,selección múltiple,Amazon,Amazon,15,61,24.5902
+2,¿Qué plataformas de compraventa digital utilizaste durante los últimos 12 meses?,selección múltiple,Temu,Temu,15,61,24.5902
+2,¿Qué plataformas de compraventa digital utilizaste durante los últimos 12 meses?,selección múltiple,Otras plataformas de compraventa,Otras plataformas,11,61,18.0328
+2,¿Qué plataformas de compraventa digital utilizaste durante los últimos 12 meses?,selección múltiple,Facebook Marketplace,Facebook Marketplace,9,61,14.7541
+2,¿Qué plataformas de compraventa digital utilizaste durante los últimos 12 meses?,selección múltiple,Ninguna,Ninguna,2,61,3.2787
+3,¿Qué información consultás habitualmente para evaluar si una publicación o vendedor es confiable?,selección múltiple,Reputación o calificaciones del vendedor,Reputación del vendedor,50,61,81.9672
+3,¿Qué información consultás habitualmente para evaluar si una publicación o vendedor es confiable?,selección múltiple,Opiniones de compradores anteriores,Opiniones de compradores,47,61,77.0492
+3,¿Qué información consultás habitualmente para evaluar si una publicación o vendedor es confiable?,selección múltiple,Cantidad de ventas realizadas por el vendedor,Cantidad de ventas,33,61,54.0984
+3,¿Qué información consultás habitualmente para evaluar si una publicación o vendedor es confiable?,selección múltiple,Fotografías y descripción del producto,Fotos y descripción,29,61,47.541
+3,¿Qué información consultás habitualmente para evaluar si una publicación o vendedor es confiable?,selección múltiple,Precio del producto en comparación con otras publicaciones,Comparación de precios,27,61,44.2623
+3,¿Qué información consultás habitualmente para evaluar si una publicación o vendedor es confiable?,selección múltiple,Métodos de pago y políticas de protección al comprador,Pagos y protección al comprador,24,61,39.3443
+3,¿Qué información consultás habitualmente para evaluar si una publicación o vendedor es confiable?,selección múltiple,No suelo verificar información adicional,No verifica información adicional,2,61,3.2787
+4,¿Alguna vez encontraste una publicación que te pareciera sospechosa o potencialmente engañosa?,opción única o escala,Sí,Sí,44,61,72.1311
+4,¿Alguna vez encontraste una publicación que te pareciera sospechosa o potencialmente engañosa?,opción única o escala,No,No,8,61,13.1148
+4,¿Alguna vez encontraste una publicación que te pareciera sospechosa o potencialmente engañosa?,opción única o escala,No estoy seguro,No estoy seguro/a,7,61,11.4754
+4,¿Alguna vez encontraste una publicación que te pareciera sospechosa o potencialmente engañosa?,opción única o escala,No suelo consultar publicaciones en marketplaces,No consulta publicaciones,2,61,3.2787
+5,¿Alguna vez decidiste no concretar una compra debido a la desconfianza que te generaba una publicación o vendedor?,opción única o escala,Sí,Sí,47,61,77.0492
+5,¿Alguna vez decidiste no concretar una compra debido a la desconfianza que te generaba una publicación o vendedor?,opción única o escala,No,No,8,61,13.1148
+5,¿Alguna vez decidiste no concretar una compra debido a la desconfianza que te generaba una publicación o vendedor?,opción única o escala,No lo recuerdo,No lo recuerdo,5,61,8.1967
+5,¿Alguna vez decidiste no concretar una compra debido a la desconfianza que te generaba una publicación o vendedor?,opción única o escala,Nunca consideré realizar una compra en estas plataformas,Nunca consideró comprar,1,61,1.6393
+6,"En general, ¿Qué nivel de confianza te generan los mecanismos de seguridad y reputación que ofrecen actualmente los marketplaces?",opción única o escala,4,4,30,61,49.1803
+6,"En general, ¿Qué nivel de confianza te generan los mecanismos de seguridad y reputación que ofrecen actualmente los marketplaces?",opción única o escala,3,3,14,61,22.9508
+6,"En general, ¿Qué nivel de confianza te generan los mecanismos de seguridad y reputación que ofrecen actualmente los marketplaces?",opción única o escala,2,2,8,61,13.1148
+6,"En general, ¿Qué nivel de confianza te generan los mecanismos de seguridad y reputación que ofrecen actualmente los marketplaces?",opción única o escala,5,5,5,61,8.1967
+6,"En general, ¿Qué nivel de confianza te generan los mecanismos de seguridad y reputación que ofrecen actualmente los marketplaces?",opción única o escala,1,1,4,61,6.5574
+7,¿Qué características de una publicación te generarían mayor desconfianza?,selección múltiple,Precio considerablemente inferior al de publicaciones similares.,Precio muy inferior al mercado,38,61,62.2951
+7,¿Qué características de una publicación te generarían mayor desconfianza?,selección múltiple,Ausencia de calificaciones u opiniones,Ausencia de calificaciones,37,61,60.6557
+7,¿Qué características de una publicación te generarían mayor desconfianza?,selección múltiple,Solicitud de realizar pagos fuera de la plataforma,Pago fuera de la plataforma,35,61,57.377
+7,¿Qué características de una publicación te generarían mayor desconfianza?,selección múltiple,Vendedor con pocas ventas registradas.,Vendedor con pocas ventas,24,61,39.3443
+7,¿Qué características de una publicación te generarían mayor desconfianza?,selección múltiple,Información contradictoria o poco clara sobre el producto,Información contradictoria,16,61,26.2295
+7,¿Qué características de una publicación te generarían mayor desconfianza?,selección múltiple,Fotografías o descripciones insuficientes,Fotos o descripciones insuficientes,9,61,14.7541
+7,¿Qué características de una publicación te generarían mayor desconfianza?,selección múltiple,Ninguna de las anteriores,Ninguna,2,61,3.2787
+8,¿Qué tan útil considerarías una herramienta de estas características antes de realizar una compra?,opción única o escala,5,5,36,61,59.0164
+8,¿Qué tan útil considerarías una herramienta de estas características antes de realizar una compra?,opción única o escala,4,4,14,61,22.9508
+8,¿Qué tan útil considerarías una herramienta de estas características antes de realizar una compra?,opción única o escala,3,3,9,61,14.7541
+8,¿Qué tan útil considerarías una herramienta de estas características antes de realizar una compra?,opción única o escala,1,1,2,61,3.2787
+9,"Si existiera una herramienta gratuita de este tipo, ¿considerarías utilizarla antes de realizar compras en marketplaces?",opción única o escala,"Sí, probablemente la utilizaría con frecuencia.","Sí, frecuentemente",35,61,57.377
+9,"Si existiera una herramienta gratuita de este tipo, ¿considerarías utilizarla antes de realizar compras en marketplaces?",opción única o escala,"Sí, pero solamente ante publicaciones que me generen dudas","Sí, ante publicaciones dudosas",23,61,37.7049
+9,"Si existiera una herramienta gratuita de este tipo, ¿considerarías utilizarla antes de realizar compras en marketplaces?",opción única o escala,No estoy seguro/a,No estoy seguro/a,2,61,3.2787
+9,"Si existiera una herramienta gratuita de este tipo, ¿considerarías utilizarla antes de realizar compras en marketplaces?",opción única o escala,Probablemente no la utilizaría,Probablemente no,1,61,1.6393
+10,¿Qué funcionalidades te resultarían más útiles en una herramienta de análisis preventivo?,selección múltiple,Información sobre el historial comercial del vendedor,Historial comercial del vendedor,36,61,59.0164
+10,¿Qué funcionalidades te resultarían más útiles en una herramienta de análisis preventivo?,selección múltiple,Advertencias sobre información insuficiente o no disponible,Advertencias por información insuficiente,26,61,42.623
+10,¿Qué funcionalidades te resultarían más útiles en una herramienta de análisis preventivo?,selección múltiple,Explicación de los factores que generan riesgo,Explicación de factores de riesgo,26,61,42.623
+10,¿Qué funcionalidades te resultarían más útiles en una herramienta de análisis preventivo?,selección múltiple,Comparación automática de precios de productos similares,Comparación de precios,23,61,37.7049
+10,¿Qué funcionalidades te resultarían más útiles en una herramienta de análisis preventivo?,selección múltiple,Consulta de reportes realizados por otros usuarios,Reportes de otros usuarios,23,61,37.7049
+10,¿Qué funcionalidades te resultarían más útiles en una herramienta de análisis preventivo?,selección múltiple,Análisis de publicaciones de diferentes marketplaces,Análisis de varios marketplaces,6,61,9.8361
+10,¿Qué funcionalidades te resultarían más útiles en una herramienta de análisis preventivo?,selección múltiple,Ninguna de las anteriores,Ninguna,1,61,1.6393
+11,¿Cuáles serían tus principales preocupaciones al utilizar una herramienta de este tipo?,selección múltiple,Que recopile datos personales innecesarios,Recopilación innecesaria de datos,33,61,54.0984
+11,¿Cuáles serían tus principales preocupaciones al utilizar una herramienta de este tipo?,selección múltiple,Que utilice información desactualizada,Información desactualizada,30,61,49.1803
+11,¿Cuáles serían tus principales preocupaciones al utilizar una herramienta de este tipo?,selección múltiple,Que genere advertencias incorrectas,Advertencias incorrectas,26,61,42.623
+11,¿Cuáles serían tus principales preocupaciones al utilizar una herramienta de este tipo?,selección múltiple,Que requiera demasiado tiempo o esfuerzo,Demasiado tiempo o esfuerzo,20,61,32.7869
+11,¿Cuáles serían tus principales preocupaciones al utilizar una herramienta de este tipo?,selección múltiple,Que no sea compatible con las plataformas que utilizo,Falta de compatibilidad,16,61,26.2295
+11,¿Cuáles serían tus principales preocupaciones al utilizar una herramienta de este tipo?,selección múltiple,Que sus resultados sean difíciles de interpretar,Resultados difíciles de interpretar,10,61,16.3934
+11,¿Cuáles serían tus principales preocupaciones al utilizar una herramienta de este tipo?,selección múltiple,No tendría preocupaciones particulares,Sin preocupaciones particulares,1,61,1.6393

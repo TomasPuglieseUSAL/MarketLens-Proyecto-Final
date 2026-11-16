@@ -1,19 +1,62 @@
 %!TEX root = ../main.tex
-% ANEXO I — Repositorios de código y material externo
+% ANEXO I — Repositorios del proyecto MarketLens
 
-\chapter{Repositorios de código fuente}\label{anx:repositorios}
+\chapter{Repositorios de código fuente y documentación}
+\label{anx:repositorios}
 
-\begin{guia}
-Los anexos contienen material que no fue producido por el autor o que
-es externo al documento: repositorios, datasets de terceros, normativa,
-manuales del proveedor. Para cada repositorio: enlace, tecnología,
-contenido y estado (activo, archivado).
-\end{guia}
+Este anexo identifica los repositorios públicos asociados con MarketLens,
+con el fin de facilitar la consulta del código fuente, las instrucciones
+de ejecución y la documentación académica del proyecto.
 
-\completar{Repositorios.}
+\section{Repositorio del sistema MarketLens}
+\label{anx:repositorio-software}
 
-\section{\completar{Nombre del repositorio}}
+\noindent\textbf{URL:}
+\url{https://github.com/TomasPuglieseUSAL/marketlens}
 
-\prettygitlink{usuario/repositorio}
+\noindent\textbf{Rama principal:} \texttt{main}.
 
-\completar{Descripción: qué contiene, tecnología, cómo ejecutarlo, licencia.}
+\noindent\textbf{Estado:} repositorio público y activo al
+16 de noviembre de 2026.
+
+\noindent\textbf{Contenido:} implementación del prototipo,
+organizada en un backend con Java y Spring Boot, una aplicación web
+con React y TypeScript, una extensión experimental de navegador,
+scripts auxiliares y archivos para su ejecución con Docker Compose.
+
+\noindent\textbf{Persistencia y autenticación:}
+PostgreSQL, Spring Security y tokens JWT.
+
+\noindent\textbf{Reproducción:} el archivo \texttt{README.md} del
+repositorio detalla los requisitos, las variables de configuración
+local, los procedimientos de inicio con Docker Compose y las
+instrucciones para cargar la extensión del navegador.
+La instalación documentada es local y experimental; no constituye
+un servicio de producción.
+
+\noindent\textbf{Licencia:} no se identifica un archivo
+\texttt{LICENSE} en la raíz de la versión consultada. La
+disponibilidad pública facilita la revisión académica del código,
+pero no implica por sí misma una licencia de reutilización.
+
+\section{Repositorio del informe académico}
+\label{anx:repositorio-documentacion}
+
+\noindent\textbf{URL:}
+\url{https://github.com/TomasPuglieseUSAL/MarketLens-Proyecto-Final}
+
+\noindent\textbf{Rama principal:} \texttt{main}.
+
+\noindent\textbf{Estado:} repositorio público al
+16 de noviembre de 2026.
+
+\noindent\textbf{Contenido:} fuentes de este informe en
+\LaTeX, capítulos, archivos preliminares, bibliografía,
+figuras y material complementario, organizados sobre
+la plantilla institucional del Proyecto Final de Ingeniería
+Informática de la Universidad del Salvador.
+
+\noindent\textbf{Compilación:} el archivo \texttt{main.tex}
+es el punto de entrada del documento. La plantilla utiliza
+pdfLaTeX y las herramientas bibliográficas y de glosarios
+indicadas en su documentación.
